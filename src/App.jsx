@@ -3,7 +3,7 @@ import './App.css'
 function App() {
   return (
     <>
-      <div>Kisan Intermediate</div>
+      <div>Kishan Campus – Coming Soon</div>
     </>
   )
 }
