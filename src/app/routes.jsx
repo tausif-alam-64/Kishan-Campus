@@ -3,7 +3,7 @@ import App from "./App";
 import MainLayout from "../component/layout/MainLayout";
 import Home from "../pages/public/Home";
 import About from "../pages/public/About";
-import Contect from "../pages/public/Contect";
+import Contact from "../pages/public/Contact";
 import NotFound from "../pages/public/NotFound";
 
 const router = createBrowserRouter([
@@ -20,8 +20,8 @@ const router = createBrowserRouter([
                 element : <About />
             },
             {
-                path : "contect",
-                element : <Contect />
+                path : "contact",
+                element : <Contact />
             },
             {
                 path : "*",
