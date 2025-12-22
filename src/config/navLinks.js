@@ -6,5 +6,9 @@ export const publicNavLinks = [
     {
         label : "About",
         path : "/about"
+    },
+    {
+        label : "Contact Us",
+        path : "/contact"
     }
 ]
