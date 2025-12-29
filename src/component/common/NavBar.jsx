@@ -36,15 +36,15 @@ const NavBar = () => {
 
         {/* Movile hamburger */}
         <div className="md:hidden">
-          <button onClick={toggleMenu} className="focus:outline-none" aria-label="Toggle Menu">
-            <RxHamburgerMenu size={30}/>
+          <button onClick={toggleMenu} className="focus:outline-none border-2 border-gray-300 rounded-lg p-1 hover:bg-gray-50 transition-colors" aria-label="Toggle Menu">
+            <RxHamburgerMenu size={30} className="w-11 text-gray-500"/>
           </button>
         </div>
       </nav>
 
       {
         isOpen && (
-          <ul className="md:hidden flex flex-col bg-white border-">
+          <ul className="md:hidden flex flex-col bg-white">
           {publicNavLinks.map((link) => (
             <li key={link.path}>
               <NavLink
