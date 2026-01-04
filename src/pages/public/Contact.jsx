@@ -6,12 +6,9 @@ const Contact = () => {
   const [status, setStatus] = useState(null);
 
   const handleSubmit = async (e) => {
-  
-    
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    formData.append("access_key", import.meta.env.VITE_WEB3FORM_KEY)
 
     const result = await submitWeb3Form(formData);
     if(result.success){
