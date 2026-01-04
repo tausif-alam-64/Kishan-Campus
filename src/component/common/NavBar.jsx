@@ -51,7 +51,7 @@ const NavBar = () => {
                 to={link.path}
                 onClick={() => setIsOpen(false)}
                 className={({ isActive }) =>
-                  `block font-medium text-gray-700 ${
+                  `block font-medium ${
                     isActive ? "text-white bg-(--secondary)" : "bg-white hover:text-(--secondary) text-(--primary)"
                   }`
                 }
@@ -59,7 +59,16 @@ const NavBar = () => {
                 {link.label}
               </NavLink>
             </li>
+
           ))}
+          <li>
+    <NavLink
+      to="/login"
+      className="block font-medium bg-white hover:text-(--secondary) text-(--primary)"
+    >
+      Login
+    </NavLink>
+  </li>
         </ul>
         )
       }

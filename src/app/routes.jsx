@@ -5,30 +5,42 @@ import Home from "../pages/public/Home";
 import About from "../pages/public/About";
 import Contact from "../pages/public/Contact";
 import NotFound from "../pages/public/NotFound";
+import AuthLayout from "../component/layout/AuthLayout";
+import Login from "../pages/auth/Login";
+import Register from "../pages/auth/Register";
+import ForgotPassword from "../pages/auth/ForgotPassword";
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <MainLayout />,
-        children : [
-            {
-                index : true,
-                element: <Home />
-            },
-            {
-                path : "about",
-                element : <About />
-            },
-            {
-                path : "contact",
-                element : <Contact />
-            },
-            {
-                path : "*",
-                element : <NotFound />
-            }
-        ]
-    }
-])
+  {
+    path: "/",
+    element: <MainLayout />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
+      },
+    ],
+  },
+  {
+    element: <AuthLayout />,
+    children: [
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
+      { path: "/forgot-password", element: <ForgotPassword /> },
+    ],
+  },
+]);
 
 export default router;
