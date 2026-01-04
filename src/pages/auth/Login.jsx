@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import AuthCard from "../../component/auth/AuthCard";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -44,7 +43,7 @@ const Login = () => {
             </div>
             <Link
               to={"/forgot-password"}
-              className="block ml-auto hover:text-primary-200"
+              className="block ml-auto text-sm hover:text-green-600"
             >
               Forgot Password ?
             </Link>
