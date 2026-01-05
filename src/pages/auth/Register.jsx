@@ -25,7 +25,7 @@ const Register = () => {
               id="name"
               placeholder="Enter your name"
               autoFocus
-              className="w-full px-4 py-3 border rounded-lg "
+              className="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-(--secondary) focus:border-(--secondary)"
               name="name"
             />
           </div>
@@ -35,18 +35,21 @@ const Register = () => {
               type="email"
               id="email"
               placeholder="Enter your email"
-              className="px-4 py-3 rounded-lg  border"
+              className="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-(--secondary) focus:border-(--secondary)"
               name="email"
             />
           </div>
           <div className="grid gap-1">
             <label htmlFor="password">Password :</label>
-            <div className="px-4 py-3 rounded-lg  border flex items-center focus-within:border-(--secondary)">
+            <div className="px-4 py-3 rounded-lg border flex items-center
+                focus-within:border-(--secondary)
+                focus-within:ring-2
+                focus-within:ring-(--secondary)">
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
                 placeholder="Enter your password"
-                className="w-full outline-none"
+                className="w-full outline-none bg-transparent"
                 name="password"
               />
               <div
@@ -59,12 +62,15 @@ const Register = () => {
           </div>
           <div className="grid gap-1">
             <label htmlFor="confirmPassword">Confirm Password :</label>
-            <div className=" px-4 py-3 rounded-lg  border flex items-center focus-within:border-(--secondary)">
+            <div className="px-4 py-3 rounded-lg border flex items-center
+                focus-within:border-(--secondary)
+                focus-within:ring-2
+                focus-within:ring-(--secondary)">
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 id="confirmPassword"
                 placeholder="Enter your confirm password"
-                className="w-full outline-none"
+                className="w-full outline-none bg-transparent"
                 name="confirmPassword"
               />
               <div

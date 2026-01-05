@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import heroimg from '../../assets/heroimg.png'
+import { supabase } from '../../services/supabase/supabaseClient'
 
 const Hero = () => {
   return (
