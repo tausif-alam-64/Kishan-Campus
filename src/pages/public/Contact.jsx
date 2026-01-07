@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { submitWeb3Form } from "../../services/api/web3Forms";
 
-
 const Contact = () => {
   const [status, setStatus] = useState(null);
 
@@ -11,16 +10,16 @@ const Contact = () => {
     const formData = new FormData(e.target);
 
     const result = await submitWeb3Form(formData);
-    if(result.success){
+    if (result.success) {
       setStatus("success");
       e.target.reset();
-    }else{
-      setStatus("error")
+    } else {
+      setStatus("error");
     }
-  }
+  };
   return (
     <section className="w-full min-h-screen bg-gray-50 pt-28 pb-20">
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-4xl mx-auto px-6 max-sm:px-4">
         <h1 className="text-4xl font-bold text-(--primary) text-center">
           Contact Us
         </h1>
@@ -29,7 +28,10 @@ const Contact = () => {
           message and we will respond soon.
         </p>
 
-        <form onSubmit={handleSubmit} className="mt-10 bg-white shadow-md rounded-xl p-8 grid gap-6">
+        <form
+          onSubmit={handleSubmit}
+          className="mt-10 bg-white shadow-md rounded-xl p-8 grid gap-6 max-sm:gap-5"
+        >
           {status === "success" && (
             <p className="p-3 bg-green-100 text-green-700 rounded-lg text-center">
               Message Sent Successfully!
@@ -87,7 +89,12 @@ const Contact = () => {
             />
           </div>
 
-          <button type="submit" className="w-full bg-(--secondary) hover:bg-(--primary) text-white py-3 rounded-lg font-semibold">Send Message</button>
+          <button
+            type="submit"
+            className="w-full bg-(--secondary) hover:bg-(--primary) text-white py-3 rounded-lg font-semibold"
+          >
+            Send Message
+          </button>
         </form>
       </div>
     </section>

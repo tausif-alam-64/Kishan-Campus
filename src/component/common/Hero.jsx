@@ -5,7 +5,7 @@ import { supabase } from '../../services/supabase/supabaseClient'
 
 const Hero = () => {
   return (
-    <section className='w-full bg-gray-50 pt-24 pb-16'>
+    <section className='w-full bg-gray-50 pt-24 max-md:pt-15  pb-16'>
       <div className='max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10 px-6'>
         {/* left text */}
         <div className='flex-1 text-center md:text-left'>
