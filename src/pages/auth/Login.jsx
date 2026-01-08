@@ -12,7 +12,7 @@ const Login = () => {
   const valideValue = Object.values(data).every((el) => el);
   return (
     <section className="w-full container mx-auto px-2">
-      <div className="bg-white my-4 w-full max-w-lg mx-auto rounded p-8">
+      <div className="bg-white my-4 w-full max-w-lg mx-auto rounded-xl p-8 shadow-2xl">
         <form action="" className="grid gap-3 py-4">
           <div className="grid gap-1">
             <label htmlFor="email" className="block mb-1 font-semibold text-(--secondary)">Email :</label>

@@ -3,10 +3,14 @@ import { NavLink } from "react-router-dom";
 import logoHorizontal from "../../assets/logo.png";
 import { publicNavLinks } from "../../config/navLinks";
 import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
+import { useAuth } from "../../hooks/useAuth";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const {user, userRole} = useAuth();
+  console.log({user, userRole})
   return (
     <header className="w-full sticky bg-white top-0 z-50">
       <nav className="flex items-center justify-between px-6 max-sm:px-2 py-4 max-sm:py-3 mx-auto max-w-7xl">
