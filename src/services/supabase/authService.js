@@ -1,6 +1,6 @@
 import { supabase } from "./supabaseClient";
 
-export const signIN = async(email, password) => {
+export const signIn = async(email, password) => {
     if(!supabase) return {error: "Supabase not configured"};
 
     return supabase.auth.signInWithPassword({ email, password});

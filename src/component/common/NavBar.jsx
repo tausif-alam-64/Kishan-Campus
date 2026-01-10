@@ -1,16 +1,37 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logoHorizontal from "../../assets/logo.png";
-import { publicNavLinks } from "../../config/navLinks";
+import {
+  publicNavLinks,
+  studentNavLinks,
+  teacherNavLinks,
+  parentNavLinks,
+  adminNavLinks,
+} from "../../config/navLinks";
 import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 import { useAuth } from "../../hooks/useAuth";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+  const { user, userRole, signOut } = useAuth();
+  const navigate = useNavigate();
 
-  const {user, userRole} = useAuth();
-  console.log({user, userRole})
+  const roleBasedLinks = {
+    student: studentNavLinks,
+    teacher: teacherNavLinks,
+    parent: parentNavLinks,
+    admin: adminNavLinks,
+  };
+
+  const navLinks = user
+    ? roleBasedLinks[userRole] || publicNavLinks
+    : publicNavLinks;
+
+  const handleLogout = async () => {
+    await signOut();
+    navigate("/");
+  };
   return (
     <header className="w-full sticky bg-white top-0 z-50">
       <nav className="flex items-center justify-between px-6 max-sm:px-2 py-4 max-sm:py-3 mx-auto max-w-7xl">
@@ -38,7 +59,36 @@ const NavBar = () => {
               </NavLink>
             </li>
           ))}
-          <li></li>
+          <li>
+            {!user && (
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  `px-4 py-2 font-medium  ${
+                    isActive
+                      ? "text-(--primary) border-b-2 "
+                      : "bg-white hover:text-(--secondary) text-(--primary)"
+                  }`
+                }
+              >
+                Login
+              </NavLink>
+            )}
+            {user && (
+              <button
+                onClick={handleLogout}
+                className={({ isActive }) =>
+                  `px-4 py-2 font-medium  ${
+                    isActive
+                      ? "text-(--primary) border-b-2 "
+                      : "bg-white hover:text-(--secondary) text-(--primary)"
+                  }`
+                }
+              >
+                Logout
+              </button>
+            )}
+          </li>
         </ul>
 
         {/* Mobile hamburger */}
@@ -95,6 +145,39 @@ const NavBar = () => {
               </NavLink>
             </li>
           ))}
+          <li>
+            {!user && (
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  `block px-6 py-4 font-medium ${
+                    isActive
+                      ? "bg-(--secondary) text-white"
+                      : "text-(--primary) hover:bg-gray-100"
+                  }`
+                }
+              >
+                Login
+              </NavLink>
+            )}
+            {user && (
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setIsOpen(fasle);
+                }}
+                className={({ isActive }) =>
+                  `block px-6 py-4 font-medium ${
+                    isActive
+                      ? "bg-(--secondary) text-white"
+                      : "text-(--primary) hover:bg-gray-100"
+                  }`
+                }
+              >
+                Logout
+              </button>
+            )}
+          </li>
         </ul>
       </div>
     </header>

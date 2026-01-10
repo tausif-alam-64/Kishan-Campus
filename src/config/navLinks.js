@@ -11,8 +11,20 @@ export const publicNavLinks = [
         label : "Contact Us",
         path : "/contact"
     },
-    {
-        label : "Login",
-        path: "/login"
-    }
+    
 ]
+export const studentNavLinks = [
+  { label: "Dashboard", path: "/student" },
+];
+
+export const teacherNavLinks = [
+  { label: "Dashboard", path: "/teacher" },
+];
+
+export const parentNavLinks = [
+  { label: "Dashboard", path: "/parent" },
+];
+
+export const adminNavLinks = [
+  { label: "Dashboard", path: "/admin" },
+];
