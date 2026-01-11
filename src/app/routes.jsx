@@ -9,6 +9,11 @@ import AuthLayout from "../component/layout/AuthLayout";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import ForgotPassword from "../pages/auth/ForgotPassword";
+import ProtectedRoute from "../routes/ProtectedRoute";
+import RoleRoute from "../routes/RoleRoute";
+import StudentDashboard from "../pages/student/StudentDashboard";
+import TeacherDashboard from "../pages/teacher/TeacherDashboard";
+import AdminDashboard from "../pages/admin/AdminDashboard";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +46,26 @@ const router = createBrowserRouter([
       { path: "/forgot-password", element: <ForgotPassword /> },
     ],
   },
+  {
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: "/student",
+        element: <RoleRoute role="student" />,
+        children: [{index: true, element: <StudentDashboard />}]
+      },
+      {
+        path: "/teacher",
+        element: <RoleRoute role="teacher" />,
+        children:[{index: true, element: <TeacherDashboard />}]
+      },
+      {
+        path : "/admin",
+        element: <RoleRoute role="/admin" />,
+        children:[{index: true, element: <AdminDashboard />}]
+      }
+    ]
+  }
 ]);
 
 export default router;

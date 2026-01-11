@@ -77,13 +77,7 @@ const NavBar = () => {
             {user && (
               <button
                 onClick={handleLogout}
-                className={({ isActive }) =>
-                  `px-4 py-2 font-medium  ${
-                    isActive
-                      ? "text-(--primary) border-b-2 "
-                      : "bg-white hover:text-(--secondary) text-(--primary)"
-                  }`
-                }
+                className="px-4 font-medium bg-white hover:text-(--secondary) text-(--primary)"
               >
                 Logout
               </button>
@@ -164,15 +158,9 @@ const NavBar = () => {
               <button
                 onClick={() => {
                   handleLogout();
-                  setIsOpen(fasle);
+                  setIsOpen(false);
                 }}
-                className={({ isActive }) =>
-                  `block px-6 py-4 font-medium ${
-                    isActive
-                      ? "bg-(--secondary) text-white"
-                      : "text-(--primary) hover:bg-gray-100"
-                  }`
-                }
+                className="px-6 py-2  font-medium bg-white hover:text-(--secondary) text-(--primary)"
               >
                 Logout
               </button>

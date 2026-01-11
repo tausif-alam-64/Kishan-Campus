@@ -3,6 +3,8 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../../services/supabase/authService";
+import { useAuth } from "../../hooks/useAuth";
+import redirectByRole from "../../utils/redirectByRole";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -13,6 +15,7 @@ const Login = () => {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const {userRole} = useAuth();
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -31,7 +34,7 @@ const Login = () => {
     setLoading(false);
 
     if(error) setError(error.message);
-    else navigate("/")
+    else navigate(redirectByRole(userRole))
   }
   const valideValue = Object.values(data).every((el) => el) 
   return (

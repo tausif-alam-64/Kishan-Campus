@@ -12,6 +12,6 @@ export const signUp = async (email, password, meta = {}) => {
     return supabase.auth.signUp({
         email,
         password,
-        option: {data: meta},
+        options: {data: meta},
     });
 };
