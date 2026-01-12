@@ -1,21 +1,26 @@
 import React from 'react'
 import {useAuth} from "../../hooks/useAuth"
+import { useNavigate } from 'react-router-dom';
 
 const TeacherDashboard = () => {
   const {user} = useAuth();
+  const navigate = useNavigate();
   
   const actions = [
     {
       title: "Post Notices",
-      description: "Create and manage notices for students."
+      description: "Create and manage notices for students.",
+      path: "/teacher/notices",
     },
     {
       title : "Upload study material",
-      description: "Upload notes, pdfs and assignments."
+      description: "Upload notes, pdfs and assignments.",
+       path: "/teacher/uploads",
     },
     {
       title: "Profile",
-      description: "Update your personal information."
+      description: "Update your personal information.",
+      path: "/teacher/profile",
     }
   ]
   return (
@@ -33,7 +38,7 @@ const TeacherDashboard = () => {
       {/* Action Card */}
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
         {actions.map((item) => (
-          <div kay={item.title} className='bg-(--secondary) text-white rounded-xl border p-6 hover:shadow-md hover:bg-(--primary) transition'>
+          <div kay={item.title} onClick={() => navigate(item.path)} className='bg-(--secondary) text-white rounded-xl border p-6 hover:shadow-md hover:bg-(--primary) transition'>
             <h3 className='text-lg font-semibold'>{item.title}</h3>
             <p className='mt-2 text-sm text-white'>{item.description}</p>
             <button className='mt-4 text-white font-medium border-2 px-2 py-1 rounded-2xl'>Open</button>
