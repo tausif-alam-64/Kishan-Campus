@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const TeacherNotice = () => {
   const navigate = useNavigate();
+  const [showModel, setShowModel] = useState(false); 
 
   const notices = [
     {
@@ -28,7 +30,7 @@ const TeacherNotice = () => {
             Create and manage notices for students.
           </p>
         </div>
-        <button className="bg-(--secondary) text-white px-5 py-2 rounded-lg font-medium hover:bg-(--primary) transition ">
+        <button onClick={() => setShowModel(true)} className="bg-(--secondary) text-white px-5 py-2 rounded-lg font-medium hover:bg-(--primary) transition ">
           + New Notice
         </button>
       </div>
@@ -55,6 +57,24 @@ const TeacherNotice = () => {
       <button onClick={() => navigate("/teacher")} className="mt-10 text-(--secondary) font-medium hover:underline">
         ← Back to Dashboard
       </button>
+
+      { showModel && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 ">
+            <div className="bg-white rounded-xl w-full max-w-md p-6 shadow-lg">
+                <h2 className="text-xl font-bold text-(--primary)">
+                    Create New Notice
+                </h2>
+                <form className="mt-4 space-y-4">
+                    <input type="text" placeholder="Notice Title" className=" w-full px-4 py-3 border rounded-lg" />
+                    <textarea placeholder="Notice Description" className="w-full px-4 py-3 border rounded-lg h-32"/>
+                    <div className="flex justify-end gap-3">
+                        <button onClick={() => setShowModel(false)} className="px-4 py-2 border rounded-lg text-(--ternary) ">Calcel</button>
+                        <button type="button" className="px-4 py-2 bg-(--secondary) text-white rounded-lg">Public</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+      )}
     </div>
   );
 };
