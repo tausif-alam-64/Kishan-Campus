@@ -14,6 +14,7 @@ import RoleRoute from "../routes/RoleRoute";
 import StudentDashboard from "../pages/student/StudentDashboard";
 import TeacherDashboard from "../pages/teacher/TeacherDashboard";
 import AdminDashboard from "../pages/admin/AdminDashboard";
+import TeacherNotice from "../pages/teacher/TeacherNotice";
 
 const router = createBrowserRouter([
   {
@@ -57,7 +58,12 @@ const router = createBrowserRouter([
       {
         path: "/teacher",
         element: <RoleRoute role="teacher" />,
-        children:[{index: true, element: <TeacherDashboard />}]
+        children:[{index: true, element: <TeacherDashboard />},
+          {
+            path: "/teacher/notices",
+            element: <TeacherNotice />
+          }
+        ]
       },
       {
         path : "/admin",
