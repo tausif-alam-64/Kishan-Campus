@@ -15,6 +15,7 @@ import StudentDashboard from "../pages/student/StudentDashboard";
 import TeacherDashboard from "../pages/teacher/TeacherDashboard";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import TeacherNotice from "../pages/teacher/TeacherNotice";
+import TeacherUploads from "../pages/teacher/TeacherUploads";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
           {
             path: "/teacher/notices",
             element: <TeacherNotice />
+          },
+          {
+            path: "/teacher/uploads",
+            element: <TeacherUploads />
           }
         ]
       },
@@ -69,7 +74,7 @@ const router = createBrowserRouter([
         path : "/admin",
         element: <RoleRoute role="/admin" />,
         children:[{index: true, element: <AdminDashboard />}]
-      }
+      },
     ]
   }
 ]);
