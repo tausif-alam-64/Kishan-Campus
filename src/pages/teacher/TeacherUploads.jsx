@@ -21,7 +21,7 @@ const TeacherUploads = () => {
     },
   ];
   return (
-    <div className="min-h-screen bg-gray-50 px-6 pt- bg-10">
+    <div className="min-h-screen bg-gray-50 px-6 pt-24 bg-10">
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold text-(--secondary) ">Uploads</h1>

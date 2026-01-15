@@ -5,6 +5,11 @@ import { useNavigate } from 'react-router-dom';
 const TeacherDashboard = () => {
   const {user} = useAuth();
   const navigate = useNavigate();
+  const stats = [
+    { label: "Total Students", value: 120 },
+    { label: "Active Notices", value: 5 },
+    { label: "Study Materials", value: 18 },
+  ];
   
   const actions = [
     {
@@ -33,6 +38,19 @@ const TeacherDashboard = () => {
         <p className='mt-1 text-(--ternary)'>
           Manage your academic activities from here.
         </p>
+      </div>
+
+      <div className='grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10'>
+        {stats.map((item) => (
+          <div key={item.label} className='bg-white border rounded-xl p-5 text-center border-(--primary)'>
+            <p className='text-2xl font-bold text-(--primary)'>
+              {item.value}
+            </p>
+            <p className='mt-1 text-sm text-(--ternary)'>
+              {item.label}
+            </p>
+          </div>
+        ))}
       </div>
 
       {/* Action Card */}
