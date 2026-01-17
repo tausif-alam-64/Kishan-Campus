@@ -20,10 +20,10 @@ const Contact = () => {
   return (
     <section className="w-full min-h-screen bg-gray-50 pt-28 pb-20">
       <div className="max-w-3xl mx-auto px-6 max-sm:px-4">
-        <h1 className="text-4xl font-bold text-(--primary) text-center">
+        <h1 className="text-4xl font-bold text-primary text-center">
           Contact Us
         </h1>
-        <p className="text-(--ternary) text-center mt-3 max-w-xl mx-auto">
+        <p className="text-ternary text-center mt-3 max-w-xl mx-auto">
           Have questions about admissions, results, or support? Send us a
           message and we will respond soon.
         </p>
@@ -45,7 +45,7 @@ const Contact = () => {
           )}
 
           <div>
-            <label className="block mb-1 font-semibold text-(--secondary)">
+            <label className="block mb-1 font-semibold text-secondary">
               Full Name
             </label>
             <input
@@ -60,7 +60,7 @@ const Contact = () => {
           <div>
             <label
               htmlFor="email"
-              className="block mb-1 font-semibold text-(--secondary)"
+              className="block mb-1 font-semibold text-secondary"
             >
               Email
             </label>
@@ -76,7 +76,7 @@ const Contact = () => {
           <div>
             <label
               htmlFor="message"
-              className="block mb-1 font-semibold text-(--secondary)"
+              className="block mb-1 font-semibold text-secondary"
             >
               Message
             </label>
@@ -91,7 +91,7 @@ const Contact = () => {
 
           <button
             type="submit"
-            className="w-full bg-(--secondary) hover:bg-(--primary) text-white py-3 rounded-lg font-semibold"
+            className="w-full bg-secondary hover:bg-primary text-white py-3 rounded-lg font-semibold"
           >
             Send Message
           </button>

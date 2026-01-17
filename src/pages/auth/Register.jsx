@@ -63,7 +63,7 @@ const Register = () => {
               id="name"
               placeholder="Enter your name"
               autoFocus
-              className="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-(--secondary) focus:border-(--secondary)"
+              className="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-secondary focus:border-secondary"
               name="name"
               value={data.name}
               onChange={handleChange}
@@ -75,7 +75,7 @@ const Register = () => {
               type="email"
               id="email"
               placeholder="Enter your email"
-              className="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-(--secondary) focus:border-(--secondary)"
+              className="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-secondary focus:border-secondary"
               name="email"
               value={data.email}
               onChange={handleChange}
@@ -85,9 +85,9 @@ const Register = () => {
             <label htmlFor="password">Password :</label>
             <div
               className="px-4 py-3 rounded-lg border flex items-center
-                focus-within:border-(--secondary)
+                focus-within:border-secondary
                 focus-within:ring-2
-                focus-within:ring-(--secondary)"
+                focus-within:ring-secondary"
             >
               <input
                 type={showPassword ? "text" : "password"}
@@ -110,9 +110,9 @@ const Register = () => {
             <label htmlFor="confirmPassword">Confirm Password :</label>
             <div
               className="px-4 py-3 rounded-lg border flex items-center
-                focus-within:border-(--secondary)
+                focus-within:border-secondary
                 focus-within:ring-2
-                focus-within:ring-(--secondary)"
+                focus-within:ring-secondary"
             >
               <input
                 type={showConfirmPassword ? "text" : "password"}

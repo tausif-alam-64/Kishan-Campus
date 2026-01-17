@@ -25,12 +25,12 @@ const TeacherNotice = () => {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-(--secondary)">Notice</h1>
-          <p className="mt-1 text-(--ternary)">
+          <h1 className="text-3xl font-bold text-secondary">Notice</h1>
+          <p className="mt-1 text-ternary">
             Create and manage notices for students.
           </p>
         </div>
-        <button onClick={() => setShowModel(true)} className="bg-(--secondary) text-white px-5 py-2 rounded-lg font-medium hover:bg-(--primary) transition ">
+        <button onClick={() => setShowModel(true)} className="bg-secondary text-white px-5 py-2 rounded-lg font-medium hover:bg-primary transition ">
           + New Notice
         </button>
       </div>
@@ -43,33 +43,33 @@ const TeacherNotice = () => {
             key={notice.id}
           >
             <div className="flex justify-between items-start">
-              <h3 className="text-lg font-semibold text-(--primary)">
+              <h3 className="text-lg font-semibold text-primary">
                 {notice.title}
               </h3>
-              <span className="text-sm text-(--ternary)">{notice.date}</span>
+              <span className="text-sm text-ternary">{notice.date}</span>
             </div>
-            <p className="mt-2 text-(--ternary) text-sm">{notice.description}</p>
+            <p className="mt-2 text-ternary text-sm">{notice.description}</p>
           </div>
         ))}
       </div>
 
       {/* Back Button */}
-      <button onClick={() => navigate("/teacher")} className="mt-10 text-(--secondary) font-medium hover:underline">
+      <button onClick={() => navigate("/teacher")} className="mt-10 text-secondary font-medium hover:underline">
         ← Back to Dashboard
       </button>
 
       { showModel && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 ">
             <div className="bg-white rounded-xl w-full max-w-md p-6 shadow-lg">
-                <h2 className="text-xl font-bold text-(--primary)">
+                <h2 className="text-xl font-bold text-primary">
                     Create New Notice
                 </h2>
                 <form className="mt-4 space-y-4">
                     <input type="text" placeholder="Notice Title" className=" w-full px-4 py-3 border rounded-lg" />
                     <textarea placeholder="Notice Description" className="w-full px-4 py-3 border rounded-lg h-32"/>
                     <div className="flex justify-end gap-3">
-                        <button onClick={() => setShowModel(false)} className="px-4 py-2 border rounded-lg text-(--ternary) ">Calcel</button>
-                        <button type="button" className="px-4 py-2 bg-(--secondary) text-white rounded-lg">Public</button>
+                        <button onClick={() => setShowModel(false)} className="px-4 py-2 border rounded-lg text-ternary ">Calcel</button>
+                        <button type="button" className="px-4 py-2 bg-secondary text-white rounded-lg">Public</button>
                     </div>
                 </form>
             </div>

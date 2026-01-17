@@ -43,7 +43,7 @@ const Login = () => {
         <form onSubmit={handleOnSubmit} className="grid gap-3 py-4">
           {error && <p className="text-red-600 text-sm">{error}</p>}
           <div className="grid gap-1">
-            <label htmlFor="email" className="block mb-1 font-semibold text-(--secondary)">Email :</label>
+            <label htmlFor="email" className="block mb-1 font-semibold text-secondary">Email :</label>
             <input
               type="email"
               id="email"
@@ -56,8 +56,8 @@ const Login = () => {
             />
           </div>
           <div className="grid gap-1">
-            <label htmlFor="password" className="block mb-1 font-semibold text-(--secondary)">Password :</label>
-            <div className=" px-4 py-3 rounded-lg  border flex items-center focus-within:border-(--secondary)">
+            <label htmlFor="password" className="block mb-1 font-semibold text-secondary">Password :</label>
+            <div className=" px-4 py-3 rounded-lg  border flex items-center focus-within:border-secondary">
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"

@@ -50,8 +50,8 @@ const NavBar = () => {
                 className={({ isActive }) =>
                   `px-4 py-2 font-medium  ${
                     isActive
-                      ? "text-(--primary) border-b-2 "
-                      : "bg-white hover:text-(--secondary) text-(--primary)"
+                      ? "text-primary border-b-2 "
+                      : "bg-white hover:text-secondary text-primary"
                   }`
                 }
               >
@@ -66,8 +66,8 @@ const NavBar = () => {
                 className={({ isActive }) =>
                   `px-4 py-2 font-medium  ${
                     isActive
-                      ? "text-(--primary) border-b-2 "
-                      : "bg-white hover:text-(--secondary) text-(--primary)"
+                      ? "text-primary border-b-2 "
+                      : "bg-white hover:text-secondary text-primary"
                   }`
                 }
               >
@@ -77,7 +77,7 @@ const NavBar = () => {
             {user && (
               <button
                 onClick={handleLogout}
-                className="px-4 font-medium bg-white hover:text-(--secondary) text-(--primary)"
+                className="px-4 font-medium bg-white hover:text-secondary text-primary"
               >
                 Logout
               </button>
@@ -114,7 +114,7 @@ const NavBar = () => {
           <button
             onClick={() => setIsOpen(false)}
             aria-label="Close Menu"
-            className="text-(--secondary) hover:text-(--primary) border border-gray-400 rounded-md hover:bg-gray-50 transition"
+            className="text-secondary hover:text-primary border border-gray-400 rounded-md hover:bg-gray-50 transition"
           >
             <RxCross2 size={35} className="w-9 text-gray-500" />
           </button>
@@ -130,8 +130,8 @@ const NavBar = () => {
                 className={({ isActive }) =>
                   `block px-6 py-4 font-medium ${
                     isActive
-                      ? "bg-(--secondary) text-white"
-                      : "text-(--primary) hover:bg-gray-100"
+                      ? "bg-secondary text-white"
+                      : "text-primary hover:bg-gray-100"
                   }`
                 }
               >
@@ -146,8 +146,8 @@ const NavBar = () => {
                 className={({ isActive }) =>
                   `block px-6 py-4 font-medium ${
                     isActive
-                      ? "bg-(--secondary) text-white"
-                      : "text-(--primary) hover:bg-gray-100"
+                      ? "bg-secondary text-white"
+                      : "text-primary hover:bg-gray-100"
                   }`
                 }
               >
@@ -160,7 +160,7 @@ const NavBar = () => {
                   handleLogout();
                   setIsOpen(false);
                 }}
-                className="px-6 py-2  font-medium bg-white hover:text-(--secondary) text-(--primary)"
+                className="px-6 py-2  font-medium bg-white hover:text-secondary text-primary"
               >
                 Logout
               </button>
