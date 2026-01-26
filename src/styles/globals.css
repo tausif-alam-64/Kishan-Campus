@@ -7,7 +7,7 @@
     --secondary: #213b5b;
     --ternary:#4a5565;
     --font-heading: "Merriweather", serif;
-    --font-text: "Inter", sans-serif
+    --font-text: "Inter", sans-serif;
 }
 
 @layer utilities {

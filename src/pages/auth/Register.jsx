@@ -13,6 +13,7 @@ const Register = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+  
   const navigate = useNavigate();
 
   const handleChange = (e) => {
