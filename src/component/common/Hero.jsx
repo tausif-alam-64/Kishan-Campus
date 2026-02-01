@@ -7,19 +7,19 @@ const Hero = () => {
   return (
 
     <section className='flex flex-col gap-16'>
-      <div className='flex max-w-7xl gap-34 mx-auto pt-16'>
+      <div className='flex flex-col md:flex-row max-w-7xl gap-10 md:gap-34 mx-auto pt-16 px-6 md:px-1'>
         <div className='flex-1'>
-          <h1 className='text-7xl text-primary'>Discover Your Education Potential</h1>
+          <h1 className='text-4xl md:text-7xl text-primary leading-tight'>Discover Your Education Potential</h1>
         </div>
         <div className='flex-1'>
-          <p className='text-2xl text-ternary pb-8'>
-            Our school provides dynamic environment that empowers students to new heights.
+          <p className=' text-base md:text-2xl text-ternary pb-6'>
+            Kisan Intermediate College is a government school committed to quality education, discipline, growth.
           </p>
-          <Link to={"/contact"} className="inline-block px-12 py-3 bg-primary text-white font-semibold
-                       transition-colors duration-300 hover:opacity-90">Contact School</Link>
+          <Link to={"/contact"} className="inline-block px-8 md:px-12 py-3 bg-primary text-white font-semibold
+                       transition-colors duration-300 hover:opacity-90">Connect With Us</Link>
         </div>
       </div>
-      <div>
+      <div className='px-2 md:px-0'>
         <img src={heroimg} alt="" className='w-full h-auto object-cover'/>
       </div>
     </section>

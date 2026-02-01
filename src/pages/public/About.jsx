@@ -8,7 +8,7 @@ const About = () => {
         {/* Page Header */}
         <div className='mb-10 text-center'>
           <h1 className='text-4xl font-bold font-heading text-primary'>
-            About Kisan Intermediage Collag
+            About Kisan Intermediate Collage
           </h1>
           <p className='mt-3 text-ternary font-text'>
             Sakhopar, Kushinagar, uttar Pradesh
