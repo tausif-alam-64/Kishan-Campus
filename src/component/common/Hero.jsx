@@ -19,8 +19,8 @@ const Hero = () => {
                        transition-colors duration-300 hover:opacity-90">Connect With Us</Link>
         </div>
       </div>
-      <div className='px-2 md:px-0'>
-        <img src={heroimg} alt="" className='w-full h-auto object-cover'/>
+      <div className='px-2 md:px-0 max-md:h-[35vh] overflow-hidden'>
+        <img src={heroimg} alt="" className='w-full h-full object-cover'/>
       </div>
     </section>
   )

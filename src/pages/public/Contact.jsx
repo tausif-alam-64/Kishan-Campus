@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { submitWeb3Form } from "../../services/api/web3Forms";
+import Header from "../../component/common/Header";
+import contactImg from "../../assets/contact.avif"
 
 const Contact = () => {
   const [status, setStatus] = useState(null);
@@ -18,7 +20,12 @@ const Contact = () => {
     }
   };
   return (
-    <section className="w-full min-h-screen bg-gray-50 pt-28 pb-20">
+    <main>
+      {/* Header */}
+      <section>
+        <Header mainImg={contactImg} heading={"contact"} subHeading={"Keep in touch with us"} />
+      </section>
+      <section className="w-full min-h-screen bg-gray-50 pt-28 pb-20">
       <div className="max-w-3xl mx-auto px-6 max-sm:px-4">
         <h1 className="text-4xl font-bold text-primary text-center">
           Contact Us
@@ -98,6 +105,8 @@ const Contact = () => {
         </form>
       </div>
     </section>
+    </main>
+    
   );
 };
 

@@ -1,130 +1,78 @@
 import React from 'react'
+import aboutHeroImg from "../../assets/aboutImg-1.avif"
+import Header from '../../component/common/Header';
 
 const About = () => {
   return (
-    <div className='min-h-screen bg-white px-6 pt-24 pb-16'>
-      <div className='max-w-5xl mx-auto'>
+    <main className="bg-white">
 
-        {/* Page Header */}
-        <div className='mb-10 text-center'>
-          <h1 className='text-4xl font-bold font-heading text-primary'>
-            About Kisan Intermediate Collage
-          </h1>
-          <p className='mt-3 text-ternary font-text'>
-            Sakhopar, Kushinagar, uttar Pradesh
-          </p>
-        </div>
+      <Header mainImg={aboutHeroImg} heading={"ABOUT"} subHeading={"About our school"}/>
 
-        {/* Overview Section */}
-        <section className='mb-12'>
-          <h2 className='text-2xl font-semibold font-text text-primary mb-4'>
-            Overview
-          </h2>
-          <p className='text-ternary font-text leading-relaxed'>
-            Kisan Inter College is a senior secondary educational institution
-            located in Sakhopar village of Padarauna block, Kushinagar district,
-            Uttar Pradesh. The college serves students from classes 6 to 12 and
-            follows the curriculum prescribed by the Uttar Pradesh State Board.
-          </p>
-          <p className='mt-4 text-ternary leading-relaxed'>
-            The institution is committed to providing inclusive and quality
-            education to students from the surrounding rural and semi-urban
-            areas, with a focus on academic learning as well as practical
-            exposure.
-          </p>
-        </section>
+      {/* ================= MAIN CONTENT ================= */}
+      <section className="pt-24 pb-32">
+        <div className="max-w-5xl mx-auto px-6">
 
-        {/* Key Facts */}
-        <section className='mb-12'>
-          <h2 className='text-2xl font-semibold font-text text-primary mb-4'>
-            Key Facts
-          </h2>
+          <div className="space-y-8 text-lg leading-relaxed text-[#4b647a]">
 
-          <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
-            <div className='border rounded-lg p-5'>
-              <p className='font-medium text-primary'>
-                School Type
-              </p>
-              <p className='text-ternary mt-1'>
-                Senior Secondary (Classes 6-12), Co-educational
-              </p>
-            </div>
+            <p>
+              <strong>Kisan Inter College, Sakhopar</strong> is a long-established
+              senior secondary educational institution located in the rural
+              region of Padarauna block, Kushinagar district, Uttar Pradesh.
+              Operating under the Uttar Pradesh State Board and affiliated with
+              the Department of Secondary Education, Government of Uttar Pradesh,
+              the institution has been serving generations of students through
+              quality secondary and senior secondary education.
+            </p>
 
-            <div className='border rounded-lg p-5'>
-              <p className='font-medium text-primary'>
-                Affiliation
-              </p>
-              <p className='text-ternary mt-1'>
-                Department of Secondary Education,
-                Government of Uttar Pradesh
-              </p>
-            </div>
+            <p>
+              Established in <strong>1948</strong> (year to be officially
+              confirmed from school records), the college has grown from a
+              modest rural school into a respected inter college offering
+              education from <strong>Class VI to Class XII</strong>. Over the
+              decades, the institution has remained committed to academic
+              discipline, character building, and inclusive education for
+              students from diverse backgrounds.
+            </p>
 
-            <div className='border rounded-lg p-5'>
-              <p className='font-medium text-primary'>
-                UDISE Code
-              </p>
-              <p className='text-ternary mt-1'>
-                09590100202
-              </p>
-            </div>
-            <div className="border rounded-lg p-5">
-              <p className="font-medium text-gray-900">Address</p>
-              <p className="text-gray-600 mt-1">
-                Sakhopar, Padarauna Block,
-                Kushinagar, Uttar Pradesh – 274402
-              </p>
-            </div>
+            <p>
+              Kisan Inter College follows the <strong>UP Board curriculum</strong>
+              and offers senior secondary education in streams such as
+              <strong> Arts, Science, and Commerce</strong> (subject combinations
+              to be confirmed). The medium of instruction generally includes
+              both Hindi and English, aligning with state education norms.
+            </p>
+
+            <p>
+              The school operates on a permanent campus equipped with classrooms,
+              basic infrastructure, and learning facilities. A major milestone
+              in the institution’s academic journey is the establishment of an
+              <strong> Atal Tinkering Lab (ATL)</strong>, which encourages
+              innovation, hands-on learning, and scientific curiosity among
+              students, especially in rural areas.
+            </p>
+
+            <p>
+              Admissions are currently conducted through offline mode at the
+              school office, following Uttar Pradesh State Board guidelines.
+              Required documentation typically includes previous academic
+              records, transfer certificate, date of birth proof, and other
+              government-mandated documents.
+            </p>
+
+            <p>
+              With its strong foundation, government affiliation, and emphasis
+              on innovation through ATL initiatives, Kisan Inter College,
+              Sakhopar continues to play a vital role in empowering rural
+              education in the Kushinagar region.
+            </p>
+
           </div>
-        </section>
 
-        {/* History */}
-        <section className='mb-12'>
-          <h2 className='text-2xl font-semibold text-primary mb-4'>
-            History
-          </h2>
-          <p className='text-ternary leading-relaxed'>
-            Kisan Inter College was established in the mid-20th century.
-            the official founding year will be updated after confirmation
-            from school records.
-          </p>
-          <p className='mt-4 text-ternary leading-relaxed'>
-            Over the decades, the college has played an important role in
-            promoting education in the Padarauna–Sakhopar region and has
-            contributed to the academic development of thousands of students.
-          </p>
-        </section>
+        </div>
+      </section>
 
-        {/* Facilities */}
-        <section className='mb-12'>
-          <h2 className='text-2xl font-semibold text-primary mb-4'>
-            Facilities & Initiatives
-          </h2>
+    </main>
+  );
+};
 
-          <ul className='list-disc pl-6 text-gray-700 space-y-2'>
-            <li>Atal Tinkering Lab (ATL) for innovation and STEM learning</li>
-            <li>Library and subject-specific laboratories</li>
-            <li>Sports and physical education facilities</li>
-            <li>Active participation in academic and cultural events</li>
-          </ul>
-        </section>
-
-        {/* Media & Activities */}
-        <section className=''>
-          <h2 className='text-2xl font-semibold text-primary mb-4'>
-            Media & Activities
-          </h2>
-          <p className='text-ternary leading-relaxed'>
-            The college maintains an active presence on digital platforms,
-            including YouTube, where various school events, activities,
-            and student projects are showcased. These platforms help in
-            sharing the institution’s academic and co-curricular journey
-            with the wider community.
-          </p>
-        </section>
-      </div>
-    </div>
-  )
-}
-
-export default About
+export default About;
