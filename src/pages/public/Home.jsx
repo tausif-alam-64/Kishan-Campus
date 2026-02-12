@@ -14,27 +14,22 @@ const Home = () => {
     <>
       <Hero />
 
-      {/* Placeholder sections - will fill later */}
-      {/* <section className="py-16 text-center text-ternary">
-        <h2 className="text-2xl font-bold text-primary">About Our School</h2>
-        <p className="max-w-2xl mx-auto mt-4 font-text">
-          Kishan Campus Intermediate College is committed to providing quality education
-          & empowering rural students through technology & modern learning systems.
-        </p>
-      </section> */}
-      <section className="bg-white py-20 md:pt-60">
+      <section className="bg-white py-12 sm:py-16 md:pt-60">
         <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
-          <div className="grid grid-cols-1 lg:grid-cols-[70%_30%]  md:gap-20 items-centre">
+          <div className="grid grid-cols-1 lg:grid-cols-[70%_30%] md:gap-20 items-centre">
             {/* ================= LEFT: IMAGES + TITLE ================= */}
             <div className="relative">
               {/* Title Card */}
               <div
-                className="absolute md:-top-28 md:left-0 z-30
-                     bg-primary text-white
-                     px-8 md:px-26 py-8 md:py-14"
+                className="bg-primary text-white
+                     px-6 py-6 mb-6
+                     md:absolute md:-top-28 md:left-0 md:z-30
+                     md:px-26 md:py-14 md:mb-0"
               >
-                <p className="text-sm tracking-[0.3em] uppercase mb-6">About</p>
-                <h2 className="text-3xl md:text-5xl font-serif leading-tight">
+                <p className="text-xs tracking-[0.2em] uppercase mb-4 md:text-sm md:tracking-[0.3em] md:mb-6">
+                  About
+                </p>
+                <h2 className="text-2xl font-serif leading-tight md:text-3xl md:text-5xl">
                   Unleash students
                   <br />
                   possibilities with us
@@ -42,19 +37,21 @@ const Home = () => {
               </div>
 
               {/* Images */}
-              <div className="relative pt-55 md:pt-0 overflow-hidden">
+              <div className="relative md:pt-0 overflow-hidden">
                 {/* Back image */}
                 <img
                   src={imgGroup}
                   alt="Student portrait"
-                  className="md:w-[48%] w-full h-65 md:h-full py-6 md:py-2 ml-auto object-cover "
+                  className="w-full h-64 object-cover mb-4
+                             md:w-[48%] md:h-full md:my-6 md:py-2 md:ml-auto md:mb-0"
                 />
 
                 {/* Front image */}
                 <img
                   src={imgSingle}
                   alt="Students walking together"
-                  className="md:w-[40%] w-full md:-mt-78 md:ml-20 h-55 md:h-full object-cover"
+                  className="w-full h-64 object-cover object-top
+                             md:w-[40%] md:-mt-78 md:ml-20 md:h-full"
                 />
               </div>
             </div>
@@ -64,9 +61,9 @@ const Home = () => {
               <img
                 src={design}
                 alt=""
-                className="hidden md:block -mt-37  ml-12 scale-110"
+                className="hidden md:block -mt-37 ml-12 scale-110"
               />
-              <p className="text-xl md:mt-8 leading-relaxed text-[#4b647a] max-w-md ">
+              <p className="text-base leading-relaxed text-[#4b647a] max-w-md md:text-xl md:mt-8">
                 Empowering students through quality education, discipline, and
                 innovation, we create a supportive learning environment that
                 helps young minds grow, explore opportunities, and build a
@@ -75,10 +72,11 @@ const Home = () => {
 
               <Link
                 to="/about"
-                className="inline-flex items-center text-lg tracking-widest gap-2 md:gap-3 mt-8 md:mt-10
+                className="inline-flex items-center text-base tracking-wide gap-2 mt-6
                      font-semibold text-primary
                      border-b-2 border-primary pb-1
-                     hover:opacity-80 transition "
+                     hover:opacity-80 transition
+                     md:text-lg md:tracking-widest md:gap-3 md:mt-8 md:mt-10"
               >
                 Learn More
                 <span className="">
@@ -90,27 +88,32 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="bg-[#eef3f8] py-15 px-4">
-        <div className="flex flex-col gap-10">
+      <section className="bg-[#eef3f8] py-12 px-4 md:py-15 md:px-4">
+        <div className="flex flex-col gap-8 md:flex-row md:gap-10 md:gap-12 md:px-20 md:py-10">
           <div className="flex flex-col gap-5">
-            <div className="">
-              <img src={booksImg} className="" />
+            <div className="w-16 h-16 md:w-auto md:h-auto">
+              <img src={booksImg} className="w-full h-full object-contain md:w-auto md:h-auto" />
             </div>
             <div className="flex flex-col gap-2">
-              <h2 className="text-3xl font-semibold text-primary">Academic Excellence</h2>
-              <p className="tracking-wide text-[#4b647a]">
+              <h2 className="text-xl font-semibold text-primary md:text-3xl">
+                Academic Excellence
+              </h2>
+              <p className="tracking-wide text-[#4b647a] text-sm md:text-base">
                 Our rigorous curriculum ensures students are well-prepared for
                 college and life beyond.
               </p>
             </div>
           </div>
+          
           <div className="flex flex-col gap-5">
-            <div>
-              <img src={buildingImg} alt="" />
+            <div className="w-16 h-16 md:w-auto md:h-auto">
+              <img src={buildingImg} alt="" className="w-full h-full object-contain md:w-auto md:h-auto" />
             </div>
             <div className="flex flex-col gap-2">
-              <h2 className="text-3xl font-semibold text-primary">Experienced Faculty</h2>
-              <p className="tracking-wide text-[#4b647a]">
+              <h2 className="text-xl font-semibold text-primary md:text-3xl">
+                Experienced Faculty
+              </h2>
+              <p className="tracking-wide text-[#4b647a] text-sm md:text-base">
                 Our dedicated teachers are passionate about education and
                 student success.
               </p>
@@ -118,12 +121,14 @@ const Home = () => {
           </div>
 
           <div className="flex flex-col gap-5">
-            <div>
-              <img src={heartImg} alt="" />
+            <div className="w-16 h-16 md:w-auto md:h-auto">
+              <img src={heartImg} alt="" className="w-full h-full object-contain md:w-auto md:h-auto" />
             </div>
             <div className="flex flex-col gap-2">
-              <h2 className="text-3xl font-semibold text-primary">Supportive Community</h2>
-              <p className="tracking-wide text-[#4b647a]">
+              <h2 className="text-xl font-semibold text-primary md:text-3xl">
+                Supportive Community
+              </h2>
+              <p className="tracking-wide text-[#4b647a] text-sm md:text-base">
                 We foster a strong sense of community and belonging for all
                 students on board.
               </p>
@@ -132,11 +137,11 @@ const Home = () => {
         </div>
       </section>
 
-      <div className="bg-white py-10 text-center">
-        <h2 className="text-2xl font-bold text-primary">
+      <div className="bg-white py-10 px-4 text-center">
+        <h2 className="text-xl font-bold text-primary md:text-2xl">
           Notices & Announcements
         </h2>
-        <p className="mt-2 text-gray-500">Coming Soon...</p>
+        <p className="mt-2 text-sm text-gray-500 md:text-base">Coming Soon...</p>
       </div>
     </>
   );
