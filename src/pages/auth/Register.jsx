@@ -20,7 +20,7 @@ const Register = () => {
     const { name, value } = e.target;
     setData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: value.trim(),
     }));
   };
 
@@ -35,7 +35,7 @@ const Register = () => {
     try {
       const { error } = await signUp(data.email, data.password, {
         full_name: data.name,
-        role: "student",
+        role: "teacher",
       });
 
       if (error) setError(error.message);
