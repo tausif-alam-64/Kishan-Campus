@@ -143,6 +143,133 @@ const Home = () => {
         </h2>
         <p className="mt-2 text-sm text-gray-500 md:text-base">Coming Soon...</p>
       </div>
+      {/* ================= BEAUTIFUL ABOUT SECTION ================= */}
+<section className="py-28 bg-white">
+
+  <div className="max-w-6xl mx-auto px-6">
+
+    {/* ---------- HEADING ---------- */}
+    <div className="text-center max-w-3xl mx-auto mb-20">
+      <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a5f] mb-6">
+        Our Legacy Since 1948
+      </h2>
+
+      <p className="text-lg text-[#4b647a] leading-relaxed">
+        Kisan Inter College, Sakhopar has been a cornerstone of rural education
+        in Kushinagar district, Uttar Pradesh. Affiliated with the Uttar Pradesh
+        State Board, the institution has consistently delivered quality
+        secondary and senior secondary education for generations.
+      </p>
+    </div>
+
+
+    {/* ---------- TWO COLUMN CONTENT ---------- */}
+    <div className="grid md:grid-cols-2 gap-16 items-center">
+
+      {/* Left Side Text */}
+      <div className="space-y-6 text-lg text-[#4b647a] leading-relaxed">
+        <p>
+          Established in <strong>1948</strong>, the college offers education
+          from <strong>Class VI to Class XII</strong> in Arts and Science streams under the UP Board curriculum.
+        </p>
+
+        <p>
+          With a disciplined academic environment and inclusive approach,
+          the institution focuses on character building, academic excellence,
+          and community development.
+        </p>
+
+        <p>
+          The introduction of the <strong>Atal Tinkering Lab (ATL)</strong>
+          has strengthened innovation and practical learning, empowering
+          students to explore science and technology hands-on.
+        </p>
+      </div>
+
+      {/* Right Side Stats Box */}
+      <div className="bg-[#f7faff] p-10 rounded-xl shadow-lg">
+
+        <h3 className="text-2xl font-semibold text-[#1e3a5f] mb-8 text-center">
+          Our Impact
+        </h3>
+
+        <div className="space-y-8 text-center">
+
+          <div>
+            <p className="text-5xl font-bold text-[#1e3a5f]">75+</p>
+            <p className="text-sm uppercase tracking-wide text-[#6b859e] mt-2">
+              Years of Excellence
+            </p>
+          </div>
+
+          <div>
+            <p className="text-5xl font-bold text-[#1e3a5f]">50,000+</p>
+            <p className="text-sm uppercase tracking-wide text-[#6b859e] mt-2">
+              Students Passed Out
+            </p>
+          </div>
+
+          <div>
+            <p className="text-5xl font-bold text-[#1e3a5f]">VI – XII</p>
+            <p className="text-sm uppercase tracking-wide text-[#6b859e] mt-2">
+              Classes Offered
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+
+    {/* ---------- PRINCIPAL MESSAGE ---------- */}
+    <div className="mt-28 max-w-3xl mx-auto text-center">
+
+      <h3 className="text-3xl font-semibold text-[#1e3a5f] mb-6">
+        Message from the Principal
+      </h3>
+
+      <p className="text-lg text-[#4b647a] leading-relaxed">
+        At Kisan Inter College, we believe education builds character,
+        discipline, and confidence. Our goal is to prepare students not only
+        for examinations but for meaningful lives filled with responsibility,
+        innovation, and service to society.
+      </p>
+
+      <p className="mt-6 font-semibold text-[#1e3a5f]">
+        — Principal, Kisan Inter College
+      </p>
+
+    </div>
+
+
+    {/* ---------- VISION & MISSION ---------- */}
+    <div className="mt-28 grid md:grid-cols-2 gap-12">
+
+      <div className="bg-[#f7faff] p-8 rounded-xl">
+        <h4 className="text-xl font-semibold text-[#1e3a5f] mb-4">
+          Our Vision
+        </h4>
+        <p className="text-[#4b647a] leading-relaxed">
+          To provide quality education in rural India while nurturing
+          innovation, ethics, and lifelong learning.
+        </p>
+      </div>
+
+      <div className="bg-[#f7faff] p-8 rounded-xl">
+        <h4 className="text-xl font-semibold text-[#1e3a5f] mb-4">
+          Our Mission
+        </h4>
+        <p className="text-[#4b647a] leading-relaxed">
+          To empower students through academic excellence, scientific
+          curiosity, and holistic development.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
     </>
   );
 };
