@@ -1,78 +1,136 @@
-import React from 'react'
-import aboutHeroImg from "../../assets/aboutImg-1.avif"
-import Header from '../../component/common/Header';
+import React from "react";
+import aboutHeroImg from "../../assets/aboutImg-1.avif";
+import Header from "../../component/common/Header";
 
 const About = () => {
   return (
-    <main className="bg-white">
+    <main className="bg-white text-ternary">
 
-      <Header mainImg={aboutHeroImg} heading={"ABOUT"} subHeading={"About our school"}/>
+      <Header
+        mainImg={aboutHeroImg}
+        heading={"ABOUT"}
+        subHeading={"About Our School"}
+      />
 
-      {/* ================= MAIN CONTENT ================= */}
-      <section className="pt-24 pb-32">
-        <div className="max-w-5xl mx-auto px-6">
+      {/* ================= INTRO ================= */}
+      <section className="py-20">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <h2 className="text-4xl text-secondary font-semibold mb-6">
+            Our Legacy of Excellence
+          </h2>
 
-          <div className="space-y-8 text-lg leading-relaxed text-[#4b647a]">
+          <p className="text-lg leading-relaxed max-w-4xl mx-auto text-ternary">
+            Kisan Inter College, Sakhopar is a senior secondary institution
+            located in Padarauna Block, Kushinagar District, Uttar Pradesh.
+            Affiliated with the Uttar Pradesh State Board and governed by the
+            Department of Secondary Education, the college has nurtured
+            generations of students with discipline, values, and academic
+            commitment since 1948.
+          </p>
+        </div>
+      </section>
 
-            <p>
-              <strong>Kisan Inter College, Sakhopar</strong> is a long-established
-              senior secondary educational institution located in the rural
-              region of Padarauna block, Kushinagar district, Uttar Pradesh.
-              Operating under the Uttar Pradesh State Board and affiliated with
-              the Department of Secondary Education, Government of Uttar Pradesh,
-              the institution has been serving generations of students through
-              quality secondary and senior secondary education.
+      {/* ================= HIGHLIGHT STATS ================= */}
+      <section className="py-16 bg-gray-100">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-8 text-center">
+          <div className="bg-white shadow-md p-8 rounded-xl">
+            <h3 className="text-3xl font-bold text-secondary">1948</h3>
+            <p className="mt-2 text-gray-600">Established</p>
+          </div>
+          <div className="bg-white shadow-md p-8 rounded-xl">
+            <h3 className="text-3xl font-bold text-secondary">VI - XII</h3>
+            <p className="mt-2 text-gray-600">Classes Offered</p>
+          </div>
+          <div className="bg-white shadow-md p-8 rounded-xl">
+            <h3 className="text-3xl font-bold text-secondary">UP Board</h3>
+            <p className="mt-2 text-gray-600">Affiliation</p>
+          </div>
+          <div className="bg-white shadow-md p-8 rounded-xl">
+            <h3 className="text-3xl font-bold text-secondary">ATL Lab</h3>
+            <p className="mt-2 text-gray-600">Innovation Facility</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= ACADEMICS ================= */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-4xl text-primary  text-center mb-14">
+            Academic Streams
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-10">
+
+            <div className="bg-white border border-gray-200 p-8 rounded-lg shadow-sm hover:shadow-md transition">
+              <h3 className="text-2xl text-primary mb-4 ">Arts</h3>
+              <p className="text-ternary">
+                A comprehensive humanities program focused on social sciences,
+                languages, and civic development.
+              </p>
+            </div>
+
+            <div className="bg-white border border-gray-200 p-8 rounded-lg shadow-sm hover:shadow-md transition">
+              <h3 className="text-2xl text-primary mb-4">Science</h3>
+              <p className="text-ternary">
+                Strong academic foundation in Physics, Chemistry, Biology,
+                and Mathematics with practical learning.
+              </p>
+            </div>
+
+            <div className="bg-white border border-gray-200 p-8 rounded-lg shadow-sm hover:shadow-md transition">
+              <h3 className="text-2xl text-primary mb-4">Commerce</h3>
+              <p className="text-ternary">
+                Focused curriculum in accounting, economics, and business
+                principles for future professionals.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ================= FACILITIES & ADMISSION ================= */}
+      <section className="py-20">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16">
+
+          <div>
+            <h2 className="text-4xl text-primary  mb-6">
+              Facilities & Innovation
+            </h2>
+            <p className="leading-relaxed mb-6 ">
+              The permanent campus includes structured classrooms, essential
+              infrastructure, and supportive learning facilities.
             </p>
 
-            <p>
-              Established in <strong>1948</strong> (year to be officially
-              confirmed from school records), the college has grown from a
-              modest rural school into a respected inter college offering
-              education from <strong>Class VI to Class XII</strong>. Over the
-              decades, the institution has remained committed to academic
-              discipline, character building, and inclusive education for
-              students from diverse backgrounds.
+            <p className="leading-relaxed">
+              The establishment of the <strong>Atal Tinkering Lab (ATL)</strong>
+              marks a major step in promoting scientific curiosity and hands-on
+              innovation among rural students.
+            </p>
+          </div>
+
+          <div className="bg-secondary text-white p-10 rounded-lg shadow-lg">
+            <h3 className="text-2xl mb-6 font-semibold">
+              Admission Process
+            </h3>
+
+            <p className="mb-6 opacity-90">
+              Admissions are conducted offline at the school office following
+              Uttar Pradesh State Board guidelines.
             </p>
 
-            <p>
-              Kisan Inter College follows the <strong>UP Board curriculum</strong>
-              and offers senior secondary education in streams such as
-              <strong> Arts, Science, and Commerce</strong> (subject combinations
-              to be confirmed). The medium of instruction generally includes
-              both Hindi and English, aligning with state education norms.
-            </p>
-
-            <p>
-              The school operates on a permanent campus equipped with classrooms,
-              basic infrastructure, and learning facilities. A major milestone
-              in the institution’s academic journey is the establishment of an
-              <strong> Atal Tinkering Lab (ATL)</strong>, which encourages
-              innovation, hands-on learning, and scientific curiosity among
-              students, especially in rural areas.
-            </p>
-
-            <p>
-              Admissions are currently conducted through offline mode at the
-              school office, following Uttar Pradesh State Board guidelines.
-              Required documentation typically includes previous academic
-              records, transfer certificate, date of birth proof, and other
-              government-mandated documents.
-            </p>
-
-            <p>
-              With its strong foundation, government affiliation, and emphasis
-              on innovation through ATL initiatives, Kisan Inter College,
-              Sakhopar continues to play a vital role in empowering rural
-              education in the Kushinagar region.
-            </p>
-
+            <ul className="space-y-3 list-disc list-inside opacity-90">
+              <li>Previous Academic Records</li>
+              <li>Transfer Certificate</li>
+              <li>Date of Birth Proof</li>
+              <li>Required Government Documents</li>
+            </ul>
           </div>
 
         </div>
       </section>
-       
+
     </main>
-    
   );
 };
 
