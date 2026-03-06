@@ -17,6 +17,7 @@ import AdminDashboard from "../pages/admin/AdminDashboard";
 import TeacherNotice from "../pages/teacher/TeacherNotice";
 import TeacherUploads from "../pages/teacher/TeacherUploads";
 import ResetPassword from "../pages/auth/ResetPassword";
+import Admissions from "../pages/public/Admissions";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "admissions",
+        element: <Admissions />
       },
       {
         path: "*",

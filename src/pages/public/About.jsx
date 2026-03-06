@@ -59,9 +59,9 @@ const About = () => {
             Academic Streams
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-10">
+          <div className="grid md:grid-cols-2 gap-25">
 
-            <div className="bg-white border border-gray-200 p-8 rounded-lg shadow-sm hover:shadow-md transition">
+            <div className="bg-white border border-gray-200 p-8 md:p-12 rounded-lg shadow-sm hover:shadow-md transition">
               <h3 className="text-2xl text-primary mb-4 ">Arts</h3>
               <p className="text-ternary">
                 A comprehensive humanities program focused on social sciences,
@@ -69,7 +69,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="bg-white border border-gray-200 p-8 rounded-lg shadow-sm hover:shadow-md transition">
+            <div className="bg-white border border-gray-200 p-8 md:p-12 rounded-lg shadow-sm hover:shadow-md transition">
               <h3 className="text-2xl text-primary mb-4">Science</h3>
               <p className="text-ternary">
                 Strong academic foundation in Physics, Chemistry, Biology,
@@ -77,13 +77,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="bg-white border border-gray-200 p-8 rounded-lg shadow-sm hover:shadow-md transition">
-              <h3 className="text-2xl text-primary mb-4">Commerce</h3>
-              <p className="text-ternary">
-                Focused curriculum in accounting, economics, and business
-                principles for future professionals.
-              </p>
-            </div>
+            
 
           </div>
         </div>
