@@ -72,7 +72,7 @@ const Contact = () => {
         />
       </section>
 
-      <section className="bg-white pt-18 md:pt-28 pb-32">
+      <section id="contact-form" className="bg-white pt-18 md:pt-28 pb-32">
         <div className="max-w-7xl mx-auto max-sm:px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 items-start">
             {/* Left : Contect Form */}

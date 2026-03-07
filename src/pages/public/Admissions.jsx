@@ -3,7 +3,7 @@ import {
   AlertTriangle, MapPin, Mail, Clock, FileText, CreditCard,
   User, Camera, Award, Calendar, CheckCircle, Building2,
   GraduationCap, Microscope, Palette, ExternalLink, Info,
-  ChevronDown, ArrowRight, BookOpen, Atom, PenLine,
+  ChevronDown, ArrowRight, BookOpen, Atom, PenLine,FlaskConical,Landmark
 } from "lucide-react";
 
 /* ────────────────────────────────────────────
@@ -11,69 +11,145 @@ import {
 ──────────────────────────────────────────── */
 function injectStyles() {
   if (document.getElementById("adm-s")) return;
+
   const el = document.createElement("style");
   el.id = "adm-s";
+
   el.textContent = `
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
-    /* ── base ── */
-    .adm-root  { font-family: 'Plus Jakarta Sans', sans-serif; }
-    .adm-serif { font-family: 'Playfair Display', serif; }
-
-    /* ── reveal ── */
-    .adm-reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity .6s cubic-bezier(.22,1,.36,1),
-                  transform .6s cubic-bezier(.22,1,.36,1);
-    }
-    .adm-reveal.in { opacity: 1; transform: translateY(0); }
-
-    /* ── card hover ── */
-    .adm-lift {
-      transition: transform .22s ease, box-shadow .22s ease;
-    }
-    .adm-lift:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(21,40,61,.13) !important;
+    :root{
+      --primary: rgb(21,40,61);
+      --secondary: #213b5b;
     }
 
-    /* ── step accordion ── */
-    .adm-step { transition: border-color .2s, box-shadow .2s; }
-    .adm-step:hover { box-shadow: 0 6px 22px rgba(21,40,61,.09); }
-    .adm-step-icon { transition: background .25s; }
-    .adm-chevron { transition: transform .25s cubic-bezier(.22,1,.36,1); }
-
-    /* ── btn ── */
-    .adm-btn { transition: transform .15s ease, filter .15s ease; }
-    .adm-btn:hover { transform: translateY(-2px); filter: brightness(1.06); }
-
-    /* ── pulse dot ── */
-    @keyframes adm-pulse {
-      0%,100% { box-shadow: 0 0 0 0 rgba(251,191,36,.55); }
-      60%      { box-shadow: 0 0 0 7px rgba(251,191,36,0); }
+    .adm-root{
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
-    .adm-dot { animation: adm-pulse 2s ease infinite; }
 
-    /* ── gradient border card ── */
-    .adm-gb {
-      position: relative;
-      border-radius: 16px;
-      background: #fff;
+    .adm-serif{
+      font-family: 'Playfair Display', serif;
     }
-    .adm-gb::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 16px;
-      padding: 1.5px;
-      background: linear-gradient(135deg, rgba(33,59,91,.25), rgba(217,119,6,.35));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
+
+    /* reveal animation */
+
+    .adm-reveal{
+      opacity:0;
+      transform:translateY(28px);
+      transition:
+        opacity .6s cubic-bezier(.22,1,.36,1),
+        transform .6s cubic-bezier(.22,1,.36,1);
+    }
+
+    .adm-reveal.in{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* hover lift */
+
+    .adm-lift{
+      transition:transform .22s ease, box-shadow .22s ease;
+    }
+
+    .adm-lift:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 40px rgba(21,40,61,.13) !important;
+    }
+
+    /* step cards */
+
+    .adm-step{
+      transition:border-color .2s, box-shadow .2s;
+    }
+
+    .adm-step:hover{
+      box-shadow:0 6px 22px rgba(21,40,61,.09);
+    }
+
+    .adm-step-icon{
+      transition:background .25s;
+    }
+
+    .adm-chevron{
+      transition:transform .25s cubic-bezier(.22,1,.36,1);
+    }
+
+    /* button behaviour only (no forced color) */
+
+    .adm-btn{
+      transition:transform .15s ease, filter .15s ease;
+    }
+
+    .adm-btn:hover{
+      transform:translateY(-2px);
+      filter:brightness(1.05);
+    }
+
+    /* GREEN LIVE DOT PULSE */
+
+    @keyframes adm-dot-pulse{
+  0%,100%{
+    box-shadow:0 0 0 0 rgba(34,197,94,.6);
+  }
+  60%{
+    box-shadow:0 0 0 7px rgba(34,197,94,0);
+  }
+}
+
+    .adm-dot{
+      animation:adm-dot-pulse 2s ease infinite;
+    }
+
+    /* gradient border card */
+
+    .adm-gb{
+      position:relative;
+      border-radius:16px;
+      background:#fff;
+    }
+
+    .adm-gb::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      border-radius:16px;
+      padding:1.5px;
+
+      background:linear-gradient(
+        135deg,
+        rgba(33,59,91,.25),
+        rgba(21,40,61,.35)
+      );
+
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+
+      pointer-events:none;
+    }
+
+    /* live badge */
+
+    .adm-live-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:4px 12px;
+      border-radius:999px;
+
+      background:rgba(33,59,91,.10);
+      border:1px solid rgba(33,59,91,.25);
+
+      color:var(--primary);
+      font-weight:600;
+      font-size:13px;
     }
   `;
+
   document.head.appendChild(el);
 }
 
@@ -98,7 +174,7 @@ function useReveal() {
 function Reveal({ children, delay = 0, className = "" }) {
   const r = useReveal();
   return (
-    <div ref={r} className={`adm-reveal ${className}`} style={{ transitionDelay: `${delay}ms` }}>
+    <div ref={r} className={`adm-reveal ${className} tracking-wide`} style={{ transitionDelay: `${delay}ms` }}>
       {children}
     </div>
   );
@@ -109,39 +185,72 @@ function Reveal({ children, delay = 0, className = "" }) {
 ──────────────────────────────────────────── */
 const STREAMS = [
   {
-    id: "arts",
+    id: "middle",
+    icon: BookOpen,
+    label: "General",
+    full: "Middle School Education",
+    subjects: ["Hindi", "English", "Mathematics", "Science", "Social Science", "Sanskrit"],
+    accent: "#7c3aed",
+    light: "#faf5ff",
+    border: "#ddd6fe",
+    tag: "Class VI – VIII",
+  },
+  {
+    id: "secondary-arts",
     icon: PenLine,
     label: "Arts",
-    full: "Arts & Humanities",
+    full: "Secondary — Arts",
+    subjects: ["Hindi", "English", "Mathematics", "Social Science", "Sanskrit", "Science"],
+    accent: "#b45309",
+    light: "#fffbeb",
+    border: "#fde68a",
+    tag: "Class IX – X",
+  },
+  {
+    id: "secondary-science",
+    icon: FlaskConical,
+    label: "Science",
+    full: "Secondary — Science",
+    subjects: ["Hindi", "English", "Mathematics", "Science", "Social Science"],
+    accent: "#0369a1",
+    light: "#f0f9ff",
+    border: "#bae6fd",
+    tag: "Class IX – X",
+  },
+  {
+    id: "arts",
+    icon: Landmark,
+    label: "Arts",
+    full: "Senior Secondary — Arts & Humanities",
     subjects: ["History", "Geography", "Civics", "Hindi", "English", "Sanskrit"],
     accent: "#b45309",
     light: "#fffbeb",
     border: "#fde68a",
-    tag: "Class XI & XII",
+    tag: "Class XI – XII",
   },
   {
     id: "pcm",
     icon: Atom,
     label: "Science (PCM)",
-    full: "Science — Math Trade",
+    full: "Senior Secondary — Math Stream",
     subjects: ["Physics", "Chemistry", "Mathematics", "English", "Hindi"],
     accent: "#0369a1",
     light: "#f0f9ff",
     border: "#bae6fd",
-    tag: "Class XI & XII",
+    tag: "Class XI – XII",
   },
   {
     id: "pcb",
     icon: Microscope,
     label: "Science (PCB)",
-    full: "Science — Biology Trade",
+    full: "Senior Secondary — Biology Stream",
     subjects: ["Physics", "Chemistry", "Biology", "English", "Hindi"],
     accent: "#047857",
     light: "#f0fdf4",
     border: "#a7f3d0",
-    tag: "Class XI & XII",
+    tag: "Class XI – XII",
   },
-];
+]
 
 const STEPS = [
   {
@@ -174,15 +283,14 @@ const STEPS = [
 const DOCS = [
   { icon: FileText,   label: "Previous Class Marksheet",  sub: "Original + photocopy" },
   { icon: Award,      label: "Transfer Certificate (TC)", sub: "From previous school" },
-  { icon: CreditCard, label: "Date of Birth Certificate", sub: "Birth cert. or Aadhaar" },
   { icon: User,       label: "Aadhaar Card",              sub: "Student's Aadhaar copy" },
   { icon: Camera,     label: "Passport Size Photos",      sub: "2–4 recent photographs" },
 ];
 
 const DATES = [
-  { icon: BookOpen,     label: "Form Availability",       note: "Session 2025–26" },
-  { icon: Calendar,     label: "Last Submission Date",    note: "Check notice board" },
-  { icon: GraduationCap,label: "Classes Commence",        note: "Per UP Board calendar" },
+  { icon: BookOpen,      label: "Form Availability",    note: "Session 2025–26" },
+  { icon: Calendar,      label: "Last Submission Date", note: "Check notice board" },
+  { icon: GraduationCap, label: "Classes Commence",     note: "Per UP Board calendar" },
 ];
 
 /* ────────────────────────────────────────────
@@ -190,12 +298,8 @@ const DATES = [
 ──────────────────────────────────────────── */
 function Eyebrow({ children }) {
   return (
-    <p style={{
-      fontSize: ".68rem", fontWeight: 700, letterSpacing: ".14em",
-      color: "#d97706", textTransform: "uppercase",
-      display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px",
-    }}>
-      <span style={{ display: "inline-block", width: "22px", height: "2px", background: "#d97706", borderRadius: "2px" }} />
+    <p className="flex items-center gap-2 mb-2.5 uppercase tracking-widest text-gray-500 font-bold text-xs">
+      <span className="inline-block w-5 h-0.5 bg-gray-500 rounded-sm shrink-0" />
       {children}
     </p>
   );
@@ -205,7 +309,10 @@ function SectionTitle({ eyebrow, title }) {
   return (
     <div className="mb-10">
       <Eyebrow>{eyebrow}</Eyebrow>
-      <h2 className="adm-serif" style={{ fontSize: "clamp(1.75rem,3.5vw,2.4rem)", fontWeight: 700, color: "var(--primary)", lineHeight: 1.18 }}>
+      <h2
+        className="adm-serif font-bold text-primary "
+        style={{ fontSize: "clamp(1.75rem,3.5vw,2.4rem)", lineHeight: 1.18 }}
+      >
         {title}
       </h2>
     </div>
@@ -223,32 +330,39 @@ export default function AdmissionsPage() {
     <div className="adm-root" style={{ background: "#f5f7fa", color: "var(--primary)" }}>
 
       {/* ══════════════ HERO ══════════════ */}
-      <section style={{
-        background: "var(--primary)",
-        position: "relative",
-        overflow: "hidden",
-        minHeight: "540px",
-        display: "flex",
-        alignItems: "center",
-      }}>
+      <section
+        className="relative overflow-hidden flex items-center min-h-135 bg-[#e6ecf1]"
+        
+      >
 
         {/* ── geometric background shapes ── */}
-        <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
+        <div aria-hidden className="absolute inset-0 pointer-events-none">
           {/* amber top rule */}
-          <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "3px", background: "linear-gradient(90deg,#d97706,#fbbf24 50%,#d97706)" }} />
-          {/* large circle top-right */}
-          <div style={{ position: "absolute", top: "-180px", right: "-180px", width: "560px", height: "560px", borderRadius: "50%", border: "1px solid rgba(251,191,36,.1)" }} />
-          <div style={{ position: "absolute", top: "-90px", right: "-90px", width: "340px", height: "340px", borderRadius: "50%", border: "1px solid rgba(251,191,36,.07)" }} />
-          {/* grid dot pattern */}
-          <svg style={{ position: "absolute", bottom: 0, left: 0, opacity: .07 }} width="300" height="200" viewBox="0 0 300 200">
+          <div
+            className="absolute top-0 left-0 right-0 h-0.75 bg-[linear-gradient(90deg,#d97706,#fbbf24 50%,#d97706)]"
+          />
+          {/* circles */}
+          <div
+            className="absolute rounded-full"
+            style={{ top: "-180px", right: "-180px", width: "560px", height: "560px", border: "1px solid rgba(251,191,36,.1)" }}
+          />
+          <div
+            className="absolute rounded-full"
+            style={{ top: "-90px", right: "-90px", width: "340px", height: "340px", border: "1px solid rgba(251,191,36,.07)" }}
+          />
+          {/* dot grid */}
+          <svg className="absolute bottom-0 left-0" style={{ opacity: 0.07 }} width="300" height="200" viewBox="0 0 300 200">
             {Array.from({ length: 10 }, (_, row) =>
               Array.from({ length: 15 }, (_, col) => (
                 <circle key={`${row}-${col}`} cx={col * 20 + 10} cy={row * 20 + 10} r="1.5" fill="#fbbf24" />
               ))
             )}
           </svg>
-          {/* diagonal slice bottom */}
-          <div style={{ position: "absolute", bottom: "-1px", left: 0, right: 0, height: "80px", background: "#f5f7fa", clipPath: "polygon(0 100%,100% 100%,100% 40%,0 100%)" }} />
+          {/* diagonal slice */}
+          <div
+            className="absolute left-0 right-0"
+            style={{ bottom: "-1px", height: "80px", background: "#f5f7fa", clipPath: "polygon(0 100%,100% 100%,100% 40%,0 100%)" }}
+          />
         </div>
 
         <div className="max-w-6xl mx-auto w-full px-6 md:px-12 py-20 md:py-28 relative">
@@ -257,25 +371,39 @@ export default function AdmissionsPage() {
             {/* left — headline */}
             <div>
               {/* live badge */}
-              <div style={{ display: "inline-flex", alignItems: "center", gap: "9px", background: "rgba(217,119,6,.18)", border: "1px solid rgba(217,119,6,.35)", borderRadius: "100px", padding: "6px 16px", marginBottom: "24px" }}>
-                <span className="adm-dot" style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#fbbf24", display: "inline-block" }} />
-                <span style={{ color: "#fbbf24", fontSize: ".71rem", fontWeight: 700, letterSpacing: ".1em" }}>ADMISSIONS OPEN · 2025–26</span>
+              <div
+                className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6 bg-[rgba(34,197,94,0.18)] border border-[rgba(34,197,94,0.45)]"
+              >
+                <span className="adm-dot inline-block w-3 h-3 rounded-full bg-green-500" />
+                <span className="text-green-600 font-bold uppercase tracking-wider" style={{ fontSize: ".71rem" }}>
+                  ADMISSIONS OPEN · 2025–26
+                </span>
               </div>
 
-              <h1 className="adm-serif" style={{ fontSize: "clamp(2.6rem,5.5vw,4rem)", fontWeight: 800, color: "#fff", lineHeight: 1.06, marginBottom: "20px" }}>
+              <h1
+                className="adm-serif font-extrabold md:text-7xl text-secondary leading-tight mb-5"
+                style={{ fontSize: "clamp(2.6rem,5.5vw,4rem)", lineHeight: 1.06 }}
+              >
                 Your Future<br />
-                <span style={{ color: "#fbbf24", fontStyle: "italic" }}>Begins Here.</span>
+                <span className="md:text-7xl text-primary leading-tight">Begins Here</span>
               </h1>
 
-              <p style={{ color: "rgba(255,255,255,.62)", fontSize: "1.02rem", lineHeight: 1.82, maxWidth: "430px", marginBottom: "32px" }}>
-                Kisan Inter College, Sakhopar has been nurturing students from Kushinagar's rural heartland since <strong style={{ color: "rgba(255,255,255,.85)" }}>1948</strong>. Join us for Class XI & XII — UP Board affiliated.
+              <p className="text-base mb-8 text-ternary">
+                Kisan Inter College, Sakhopar has been nurturing students from Kushinagar's rural heartland since{" "}
+                <strong className="text-ternary">1948</strong>. Join us for Class XI & XII — UP Board affiliated.
               </p>
 
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-                <a href="#process" className="adm-btn" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#d97706", color: "#fff", padding: "13px 24px", borderRadius: "10px", fontWeight: 700, fontSize: ".88rem", textDecoration: "none" }}>
+              <div className="flex flex-wrap gap-2.5">
+                <a
+                  href="#process"
+                  className="adm-btn inline-flex items-center gap-2 bg-primary text-white px-10 py-3 font-bold text-sm no-underline"
+                >
                   How to Apply <ArrowRight size={15} />
                 </a>
-                <a href="#contact" className="adm-btn" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(255,255,255,.08)", border: "1px solid rgba(255,255,255,.15)", color: "#fff", padding: "13px 24px", borderRadius: "10px", fontWeight: 600, fontSize: ".88rem", textDecoration: "none" }}>
+                <a
+                  href="#contact"
+                  className="adm-btn inline-flex items-center gap-2 text-primary px-6 py-3 font-semibold  text-sm no-underline shadow-2xl bg-[#f2f4f6] border border-secondary"
+                >
                   <MapPin size={15} /> Get Directions
                 </a>
               </div>
@@ -283,24 +411,42 @@ export default function AdmissionsPage() {
 
             {/* right — info glass card */}
             <div>
-              <div style={{ background: "rgba(255,255,255,.06)", border: "1px solid rgba(255,255,255,.11)", borderRadius: "20px", backdropFilter: "blur(14px)", overflow: "hidden" }}>
-                <div style={{ padding: "1.1rem 1.5rem", borderBottom: "1px solid rgba(255,255,255,.08)", display: "flex", alignItems: "center", gap: "9px" }}>
-                  <Building2 size={15} color="#fbbf24" />
-                  <span style={{ color: "rgba(255,255,255,.45)", fontSize: ".68rem", letterSpacing: ".1em", fontWeight: 700 }}>SCHOOL AT A GLANCE</span>
+              <div
+                className="rounded-2xl overflow-hidden"
+                style={{
+                  background: "rgba(255,255,255,.06)",
+                  border: "1px solid rgba(255,255,255,.11)",
+                  backdropFilter: "blur(14px)",
+                }}
+              >
+                <div
+                  className="px-6 py-4 flex items-center gap-2.5"
+                  style={{ borderBottom: "1px solid rgba(255,255,255,.08)" }}
+                >
+                  <Building2 size={15} className="text-primary" />
+                  <span
+                    className="uppercase tracking-wider font-bold font-[.68rem] text-secondary"
+                  >
+                    SCHOOL AT A GLANCE
+                  </span>
                 </div>
                 {[
-                  ["Board",      "UP State Board"],
-                  ["Category",   "Government-Aided"],
-                  ["Medium",     "Hindi & English"],
-                  ["Classes",    "XI & XII"],
-                  ["Streams",    "Arts · Sci (PCM) · Sci (PCB)"],
-                  ["Location",   "Sakhopar, Kushinagar"],
-                  ["UDISE",      "09590100202"],
-                  ["Est.",       "1948"],
+                  ["Board",    "UP State Board"],
+                  ["Category", "Government-Aided"],
+                  ["Medium",   "Hindi & English"],
+                  ["Classes",  "XI & XII"],
+                  ["Streams",  "Arts · Sci (PCM) · Sci (PCB)"],
+                  ["Location", "Sakhopar, Kushinagar"],
+                  ["UDISE",    "09590100202"],
+                  ["Est.",     "1948"],
                 ].map(([k, v], i) => (
-                  <div key={k} style={{ padding: ".78rem 1.5rem", borderBottom: i < 7 ? "1px solid rgba(255,255,255,.05)" : "none", display: "flex", justifyContent: "space-between", alignItems: "center", gap: "12px" }}>
-                    <span style={{ color: "rgba(255,255,255,.38)", fontSize: ".78rem" }}>{k}</span>
-                    <span style={{ color: "#fff", fontWeight: 600, fontSize: ".82rem", textAlign: "right" }}>{v}</span>
+                  <div
+                    key={k}
+                    className="flex justify-between items-center gap-3 px-6 py-3"
+                    style={{ borderBottom: i < 7 ? "1px solid rgba(255,255,255,.05)" : "none" }}
+                  >
+                    <span className="text-xs text-secondary">{k}</span>
+                    <span className="text-primary font-semibold text-right" style={{ fontSize: ".82rem" }}>{v}</span>
                   </div>
                 ))}
               </div>
@@ -313,15 +459,18 @@ export default function AdmissionsPage() {
       {/* ══════════════ OFFLINE NOTICE ══════════════ */}
       <div className="max-w-6xl mx-auto px-6 md:px-12 -mt-2 relative z-10">
         <Reveal>
-          <div style={{ background: "#fffbeb", border: "1.5px solid #fcd34d", borderRadius: "14px", padding: "1.2rem 1.5rem", display: "flex", gap: "14px", alignItems: "flex-start", boxShadow: "0 4px 20px rgba(217,119,6,.12)" }}>
-            <div style={{ background: "#d97706", borderRadius: "10px", padding: "10px", flexShrink: 0 }}>
+          <div
+            className="bg-amber-50 border border-amber-300 rounded-2xl px-6 py-5 flex gap-3.5 items-start"
+            style={{ boxShadow: "0 4px 20px rgba(217,119,6,.12)" }}
+          >
+            <div className="bg-amber-600 rounded-xl p-2.5 shrink-0">
               <AlertTriangle size={18} color="#fff" />
             </div>
             <div>
-              <p style={{ fontWeight: 700, color: "#92400e", fontSize: ".93rem", marginBottom: "4px" }}>
+              <p className="font-bold text-amber-800 text-sm mb-1">
                 Offline Admissions Only — No Online Registration Available
               </p>
-              <p style={{ color: "#78350f", fontSize: ".875rem", lineHeight: 1.75 }}>
+              <p className="text-amber-900 text-sm leading-7">
                 All admissions are processed <strong>in person at the school office</strong>. Students must visit during working hours (Mon–Sat, 9 AM–3 PM) with all original documents. No walk-in appointment is required.
               </p>
             </div>
@@ -330,7 +479,7 @@ export default function AdmissionsPage() {
       </div>
 
       {/* ══════════════ MAIN CONTENT ══════════════ */}
-      <main className="max-w-6xl mx-auto px-6 md:px-12 py-16" style={{ display: "flex", flexDirection: "column", gap: "80px" }}>
+      <main className="max-w-6xl mx-auto px-6 md:px-12 py-16 flex flex-col gap-20">
 
         {/* ── STREAMS ── */}
         <section>
@@ -338,29 +487,45 @@ export default function AdmissionsPage() {
             <SectionTitle eyebrow="Courses Offered" title="Choose Your Stream" />
           </Reveal>
 
-          {/* big stream cards */}
           <div className="grid md:grid-cols-3 gap-5">
             {STREAMS.map((s, i) => (
               <Reveal key={s.id} delay={i * 80}>
-                <div className="adm-gb adm-lift" style={{ overflow: "hidden", boxShadow: "0 4px 16px rgba(21,40,61,.07)", height: "100%" }}>
-                  {/* coloured top band */}
-                  <div style={{ height: "6px", background: s.accent }} />
-                  <div style={{ padding: "1.6rem" }}>
-                    {/* icon + label */}
-                    <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
-                      <div style={{ width: "46px", height: "46px", borderRadius: "12px", background: s.light, border: `1.5px solid ${s.border}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <div
+                  className="adm-gb adm-lift overflow-hidden h-full"
+                  style={{ boxShadow: "0 4px 16px rgba(21,40,61,.07)" }}
+                >
+                  <div className="h-1.5" style={{ background: s.accent }} />
+                  <div className="p-6">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div
+                        className="rounded-xl flex items-center justify-center shrink-0"
+                        style={{ width: "46px", height: "46px", background: s.light, border: `1.5px solid ${s.border}` }}
+                      >
                         <s.icon size={20} color={s.accent} />
                       </div>
                       <div>
-                        <span style={{ display: "inline-block", background: s.light, border: `1px solid ${s.border}`, color: s.accent, fontSize: ".65rem", fontWeight: 700, letterSpacing: ".09em", borderRadius: "100px", padding: "2px 9px", marginBottom: "3px" }}>CLASS XI & XII</span>
-                        <p className="adm-serif" style={{ fontWeight: 700, fontSize: "1.1rem", color: "var(--primary)", lineHeight: 1.2 }}>{s.full}</p>
+                        <span
+                          className="inline-block rounded-full px-2 py-0.5 mb-1 font-bold uppercase tracking-wider border"
+                          style={{ background: s.light, borderColor: s.border, color: s.accent, fontSize: ".65rem" }}
+                        >
+                          CLASS XI & XII
+                        </span>
+                        <p
+                          className="font-bold leading-tight tracking-wide text-xl text-primary"
+                          
+                        >
+                          {s.full}
+                        </p>
                       </div>
                     </div>
 
-                    {/* subjects */}
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+                    <div className="flex flex-wrap gap-1.5">
                       {s.subjects.map(sub => (
-                        <span key={sub} style={{ background: "#f1f5f9", color: "var(--ternary)", fontSize: ".75rem", fontWeight: 500, borderRadius: "6px", padding: "4px 10px" }}>
+                        <span
+                          key={sub}
+                          className="bg-slate-100 font-medium rounded-md px-2.5 py-1 text-xs"
+                          style={{ color: "var(--ternary)" }}
+                        >
                           {sub}
                         </span>
                       ))}
@@ -371,11 +536,10 @@ export default function AdmissionsPage() {
             ))}
           </div>
 
-          {/* note below */}
           <Reveal delay={260}>
-            <div style={{ marginTop: "16px", display: "flex", alignItems: "flex-start", gap: "9px", padding: "12px 14px", background: "#fff", borderRadius: "10px", border: "1px solid #e5e7eb" }}>
-              <Info size={14} color="var(--ternary)" style={{ marginTop: "2px", flexShrink: 0 }} />
-              <p style={{ color: "var(--ternary)", fontSize: ".8rem", lineHeight: 1.7 }}>
+            <div className="mt-4 flex items-start gap-2.5 px-3.5 py-3 bg-white rounded-xl border border-gray-200">
+              <Info size={14} color="var(--ternary)" className="mt-0.5 shrink-0" />
+              <p className="leading-7" style={{ color: "var(--ternary)", fontSize: ".8rem" }}>
                 Stream allocation is subject to seat availability and UP Board norms. Contact the school office to confirm subject combinations for the current session.
               </p>
             </div>
@@ -383,7 +547,7 @@ export default function AdmissionsPage() {
         </section>
 
         {/* divider */}
-        <div style={{ height: "1px", background: "linear-gradient(to right, transparent, #cbd5e1, transparent)" }} />
+        <div className="h-px bg-linear-to-r from-transparent via-slate-300 to-transparent" />
 
         {/* ── PROCESS ── */}
         <section id="process">
@@ -391,62 +555,63 @@ export default function AdmissionsPage() {
             <SectionTitle eyebrow="How to Apply" title="Step-by-Step Process" />
           </Reveal>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+          <div className="flex flex-col gap-1.5">
             {STEPS.map((step, i) => {
               const isOpen = openStep === i;
               const isDone = openStep !== null && i < openStep;
               return (
                 <Reveal key={i} delay={i * 50}>
-                  <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
+                  <div className="flex gap-4 items-start">
                     {/* left: number + connector */}
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: "16px", flexShrink: 0 }}>
+                    <div className="flex flex-col items-center pt-4 shrink-0">
                       <div
-                        className="adm-step-icon"
+                        className="adm-step-icon w-11 h-11 rounded-full flex items-center justify-center cursor-pointer shrink-0"
                         onClick={() => setOpenStep(isOpen ? null : i)}
                         style={{
-                          width: "44px", height: "44px", borderRadius: "50%",
                           background: isOpen ? "#d97706" : isDone ? "#16a34a" : "var(--primary)",
-                          display: "flex", alignItems: "center", justifyContent: "center",
-                          cursor: "pointer", flexShrink: 0,
                           boxShadow: isOpen ? "0 0 0 5px rgba(217,119,6,.18)" : "none",
                         }}
                       >
                         {isDone
                           ? <CheckCircle size={18} color="#fff" />
-                          : <span style={{ color: "#fff", fontWeight: 700, fontSize: ".75rem" }}>{step.n}</span>
+                          : <span className="text-white font-bold text-xs">{step.n}</span>
                         }
                       </div>
                       {i < STEPS.length - 1 && (
-                        <div style={{ width: "2px", flexGrow: 1, minHeight: "24px", background: isOpen ? "linear-gradient(to bottom,#d97706,transparent)" : "#e2e8f0", marginTop: "6px" }} />
+                        <div
+                          className="w-0.5 flex-grow mt-1.5"
+                          style={{
+                            minHeight: "24px",
+                            background: isOpen ? "linear-gradient(to bottom,#d97706,transparent)" : "#e2e8f0",
+                          }}
+                        />
                       )}
                     </div>
 
                     {/* right: card */}
                     <div
-                      className="adm-step"
+                      className="adm-step flex-1 bg-white rounded-2xl cursor-pointer mb-1.5"
                       onClick={() => setOpenStep(isOpen ? null : i)}
                       style={{
-                        flex: 1,
-                        background: "#fff",
                         border: `1.5px solid ${isOpen ? "#d97706" : "#e5e7eb"}`,
-                        borderRadius: "14px",
                         padding: "1.05rem 1.35rem",
-                        cursor: "pointer",
-                        marginBottom: "6px",
                         boxShadow: isOpen ? "0 6px 24px rgba(217,119,6,.1)" : "0 1px 4px rgba(0,0,0,.04)",
                       }}
                     >
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                        <p style={{ fontWeight: 600, fontSize: ".93rem", color: "var(--primary)" }}>{step.title}</p>
+                      <div className="flex justify-between items-center">
+                        <p className="font-semibold text-sm" style={{ color: "var(--primary)" }}>{step.title}</p>
                         <ChevronDown
                           size={16}
                           color={isOpen ? "#d97706" : "#94a3b8"}
-                          className="adm-chevron"
-                          style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0)", flexShrink: 0 }}
+                          className="adm-chevron shrink-0"
+                          style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0)" }}
                         />
                       </div>
                       {isOpen && (
-                        <p style={{ color: "var(--ternary)", fontSize: ".875rem", lineHeight: 1.78, marginTop: "10px", paddingTop: "10px", borderTop: "1px solid #f1f5f9" }}>
+                        <p
+                          className="text-sm leading-7 mt-2.5 pt-2.5 border-t border-slate-100"
+                          style={{ color: "var(--ternary)" }}
+                        >
                           {step.body}
                         </p>
                       )}
@@ -459,7 +624,7 @@ export default function AdmissionsPage() {
         </section>
 
         {/* divider */}
-        <div style={{ height: "1px", background: "linear-gradient(to right, transparent, #cbd5e1, transparent)" }} />
+        <div className="h-px bg-linear-to-r from-transparent via-slate-300 to-transparent" />
 
         {/* ── DOCUMENTS ── */}
         <section>
@@ -470,24 +635,27 @@ export default function AdmissionsPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {DOCS.map((doc, i) => (
               <Reveal key={i} delay={i * 60}>
-                <div className="adm-lift adm-gb" style={{ padding: "1.3rem 1.4rem", display: "flex", gap: "14px", alignItems: "flex-start", boxShadow: "0 2px 10px rgba(0,0,0,.05)" }}>
-                  <div style={{ width: "40px", height: "40px", borderRadius: "10px", background: "#f0fdf4", border: "1px solid #bbf7d0", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <div
+                  className="adm-lift adm-gb flex gap-3.5 items-start p-5"
+                  style={{ boxShadow: "0 2px 10px rgba(0,0,0,.05)" }}
+                >
+                  <div className="w-10 h-10 rounded-xl bg-green-50 border border-green-200 flex items-center justify-center shrink-0">
                     <doc.icon size={17} color="#16a34a" />
                   </div>
                   <div>
-                    <p style={{ fontWeight: 600, fontSize: ".875rem", color: "var(--primary)", marginBottom: "3px" }}>{doc.label}</p>
-                    <p style={{ color: "#94a3b8", fontSize: ".77rem" }}>{doc.sub}</p>
+                    <p className="font-semibold text-sm mb-0.5 text-primary">{doc.label}</p>
+                    <p className="text-slate-400 text-xs">{doc.sub}</p>
                   </div>
                 </div>
               </Reveal>
             ))}
             {/* tip */}
             <Reveal delay={320}>
-              <div style={{ padding: "1.3rem 1.4rem", display: "flex", gap: "14px", alignItems: "flex-start", background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: "14px" }}>
-                <div style={{ width: "40px", height: "40px", borderRadius: "10px", background: "#dbeafe", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <div className="flex gap-3.5 items-start p-5 bg-blue-50 border border-blue-200 rounded-2xl">
+                <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center shrink-0">
                   <Info size={17} color="#2563eb" />
                 </div>
-                <p style={{ color: "#1e40af", fontSize: ".82rem", lineHeight: 1.75 }}>
+                <p className="text-blue-800 leading-7" style={{ fontSize: ".82rem" }}>
                   Bring <strong>original documents</strong> along with photocopies. Originals are returned after same-day verification.
                 </p>
               </div>
@@ -496,7 +664,7 @@ export default function AdmissionsPage() {
         </section>
 
         {/* divider */}
-        <div style={{ height: "1px", background: "linear-gradient(to right, transparent, #cbd5e1, transparent)" }} />
+        <div className="h-px bg-linear-to-r from-transparent via-slate-300 to-transparent" />
 
         {/* ── FEE + DATES (2-col) ── */}
         <div className="grid md:grid-cols-2 gap-10">
@@ -505,16 +673,26 @@ export default function AdmissionsPage() {
           <section>
             <Reveal><SectionTitle eyebrow="Fees" title="Fee Structure" /></Reveal>
             <Reveal delay={60}>
-              <div style={{ background: "var(--primary)", borderRadius: "18px", padding: "2rem", position: "relative", overflow: "hidden", boxShadow: "0 8px 32px rgba(21,40,61,.2)" }}>
-                {/* bg circle */}
-                <div style={{ position: "absolute", bottom: "-50px", right: "-50px", width: "190px", height: "190px", borderRadius: "50%", border: "1px solid rgba(251,191,36,.12)" }} />
-                <div style={{ position: "absolute", bottom: "-20px", right: "-20px", width: "120px", height: "120px", borderRadius: "50%", background: "rgba(251,191,36,.06)" }} />
-
+              <div
+                className="rounded-2xl p-8 relative overflow-hidden"
+                style={{ background: "var(--primary)", boxShadow: "0 8px 32px rgba(21,40,61,.2)" }}
+              >
+                <div
+                  className="absolute rounded-full"
+                  style={{ bottom: "-50px", right: "-50px", width: "190px", height: "190px", border: "1px solid rgba(251,191,36,.12)" }}
+                />
+                <div
+                  className="absolute rounded-full"
+                  style={{ bottom: "-20px", right: "-20px", width: "120px", height: "120px", background: "rgba(251,191,36,.06)" }}
+                />
                 <Eyebrow>Government-Aided Institution</Eyebrow>
-                <p style={{ color: "rgba(255,255,255,.72)", fontSize: ".92rem", lineHeight: 1.82, marginBottom: "1.4rem" }}>
-                  Kisan Inter College is a <strong style={{ color: "#fff" }}>government-aided school</strong>, so fees are minimal and are set as per UP Board and institutional norms. Exact details are displayed on the school notice board and at the office counter.
+                <p className="text-sm leading-7 mb-6" style={{ color: "rgba(255,255,255,.72)" }}>
+                  Kisan Inter College is a <strong className="text-white">government-aided school</strong>, so fees are minimal and are set as per UP Board and institutional norms. Exact details are displayed on the school notice board and at the office counter.
                 </p>
-                <a href="mailto:kisansakhopar@gmail.com" className="adm-btn" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#d97706", color: "#fff", padding: "11px 22px", borderRadius: "9px", fontWeight: 700, fontSize: ".85rem", textDecoration: "none" }}>
+                <a
+                  href="mailto:kisansakhopar@gmail.com"
+                  className="adm-btn inline-flex items-center gap-2  bg-[rgba(255,255,255,0.08)] border border-[rgba(255,255,255,0.14)] text-white px-6 py-2.5 rounded-xl font-bold text-sm no-underline"
+                >
                   <Mail size={14} /> Enquire via Email
                 </a>
               </div>
@@ -524,25 +702,31 @@ export default function AdmissionsPage() {
           {/* dates */}
           <section>
             <Reveal delay={60}><SectionTitle eyebrow="Timeline" title="Important Dates" /></Reveal>
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <div className="flex flex-col gap-2.5">
               {DATES.map((d, i) => (
                 <Reveal key={i} delay={i * 65 + 80}>
-                  <div className="adm-lift" style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: "13px", padding: "1rem 1.3rem", display: "flex", alignItems: "center", gap: "14px", boxShadow: "0 2px 8px rgba(0,0,0,.04)" }}>
-                    <div style={{ width: "42px", height: "42px", borderRadius: "11px", background: "#f8fafc", border: "1px solid #e5e7eb", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <div
+                    className="adm-lift flex items-center gap-3.5 bg-white border border-gray-200 rounded-2xl p-4"
+                    style={{ boxShadow: "0 2px 8px rgba(0,0,0,.04)" }}
+                  >
+                    <div
+                      className="flex items-center justify-center shrink-0 bg-slate-50 border border-gray-200 rounded-xl"
+                      style={{ width: "42px", height: "42px" }}
+                    >
                       <d.icon size={17} color="var(--secondary)" />
                     </div>
-                    <div style={{ flex: 1 }}>
-                      <p style={{ fontWeight: 600, fontSize: ".875rem", color: "var(--primary)" }}>{d.label}</p>
-                      <p style={{ color: "#94a3b8", fontSize: ".75rem" }}>{d.note}</p>
+                    <div className="flex-1">
+                      <p className="font-semibold text-sm" style={{ color: "var(--primary)" }}>{d.label}</p>
+                      <p className="text-slate-400 text-xs">{d.note}</p>
                     </div>
-                    <span style={{ background: "#fef9c3", color: "#854d0e", borderRadius: "7px", padding: "4px 11px", fontSize: ".7rem", fontWeight: 700, letterSpacing: ".04em", whiteSpace: "nowrap" }}>
+                    <span className="bg-yellow-100 text-yellow-800 rounded-lg px-3 py-1 text-xs font-bold tracking-wide whitespace-nowrap">
                       TBA
                     </span>
                   </div>
                 </Reveal>
               ))}
               <Reveal delay={280}>
-                <p style={{ color: "#94a3b8", fontSize: ".78rem", paddingLeft: "6px", paddingTop: "4px" }}>
+                <p className="text-slate-400 text-xs pl-1.5 pt-1">
                   * Exact dates are posted on the school notice board each session.
                 </p>
               </Reveal>
@@ -551,7 +735,7 @@ export default function AdmissionsPage() {
         </div>
 
         {/* divider */}
-        <div style={{ height: "1px", background: "linear-gradient(to right, transparent, #cbd5e1, transparent)" }} />
+        <div className="h-px bg-linear-to-r from-transparent via-slate-300 to-transparent" />
 
         {/* ── CONTACT ── */}
         <section id="contact">
@@ -561,28 +745,34 @@ export default function AdmissionsPage() {
 
             {/* details — 3 cols */}
             <Reveal delay={60} className="md:col-span-3">
-              <div className="adm-gb" style={{ overflow: "hidden", boxShadow: "0 4px 18px rgba(21,40,61,.07)", height: "100%" }}>
-                {/* header */}
-                <div style={{ padding: "1.1rem 1.5rem", background: "#fafafa", borderBottom: "1px solid #f1f5f9", display: "flex", alignItems: "center", gap: "9px" }}>
+              <div
+                className="adm-gb overflow-hidden h-full"
+                style={{ boxShadow: "0 4px 18px rgba(21,40,61,.07)" }}
+              >
+                <div className="px-6 py-4 bg-neutral-50 border-b border-slate-100 flex items-center gap-2.5">
                   <Building2 size={15} color="var(--secondary)" />
-                  <p style={{ fontWeight: 700, fontSize: ".85rem", color: "var(--primary)" }}>School Office</p>
+                  <p className="font-bold text-sm" style={{ color: "var(--primary)" }}>School Office</p>
                 </div>
-                {/* rows */}
-                <div style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: "1.3rem" }}>
+                <div className="p-6 flex flex-col gap-5">
                   {[
                     { Icon: MapPin, label: "Address",      val: "Kisan Inter College, Sakhopar\nPadarauna, Kushinagar\nUttar Pradesh – 274402" },
                     { Icon: Mail,   label: "Email",        val: "kisansakhopar@gmail.com", href: "mailto:kisansakhopar@gmail.com" },
                     { Icon: Clock,  label: "Office Hours", val: "Monday – Saturday · 9:00 AM – 3:00 PM" },
                   ].map(({ Icon, label, val, href }) => (
-                    <div key={label} style={{ display: "flex", gap: "13px" }}>
-                      <div style={{ width: "38px", height: "38px", borderRadius: "10px", background: "#f8fafc", border: "1px solid #e5e7eb", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <div key={label} className="flex gap-3.5">
+                      <div
+                        className="flex items-center justify-center shrink-0 bg-slate-50 border border-gray-200 rounded-xl"
+                        style={{ width: "38px", height: "38px" }}
+                      >
                         <Icon size={15} color="var(--secondary)" />
                       </div>
                       <div>
-                        <p style={{ fontSize: ".68rem", letterSpacing: ".08em", color: "#94a3b8", fontWeight: 700, marginBottom: "3px" }}>{label.toUpperCase()}</p>
+                        <p className="uppercase tracking-wider text-slate-400 font-bold mb-0.5" style={{ fontSize: ".68rem" }}>
+                          {label}
+                        </p>
                         {href
-                          ? <a href={href} style={{ color: "var(--secondary)", fontWeight: 600, fontSize: ".875rem", textDecoration: "none" }}>{val}</a>
-                          : <p style={{ color: "var(--primary)", fontSize: ".875rem", lineHeight: 1.65, whiteSpace: "pre-line" }}>{val}</p>
+                          ? <a href={href} className="font-semibold text-sm no-underline" style={{ color: "var(--secondary)" }}>{val}</a>
+                          : <p className="text-sm leading-relaxed whitespace-pre-line" style={{ color: "var(--primary)" }}>{val}</p>
                         }
                       </div>
                     </div>
@@ -593,40 +783,45 @@ export default function AdmissionsPage() {
 
             {/* CTA — 2 cols */}
             <Reveal delay={110} className="md:col-span-2">
-              <div style={{ display: "flex", flexDirection: "column", gap: "12px", height: "100%" }}>
+              <div className="flex flex-col gap-3 h-full">
 
                 {/* ready card */}
-                <div style={{ background: "var(--primary)", borderRadius: "16px", padding: "1.7rem", flex: 1, display: "flex", flexDirection: "column", gap: "14px", position: "relative", overflow: "hidden" }}>
-                  <div style={{ position: "absolute", top: "-30px", right: "-30px", width: "120px", height: "120px", borderRadius: "50%", border: "1px solid rgba(251,191,36,.12)" }} />
-                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <div
+                  className="rounded-2xl p-7 flex-1 flex flex-col gap-3.5 relative overflow-hidden"
+                  style={{ background: "var(--primary)" }}
+                >
+                  <div
+                    className="absolute rounded-full"
+                    style={{ top: "-30px", right: "-30px", width: "120px", height: "120px", border: "1px solid rgba(251,191,36,.12)" }}
+                  />
+                  <div className="flex items-center gap-2.5">
                     <CheckCircle size={20} color="#4ade80" />
-                    <p className="adm-serif" style={{ color: "#fff", fontWeight: 700, fontSize: "1.1rem" }}>Ready to Apply?</p>
+                    <p className="adm-serif text-white font-bold text-lg">Ready to Apply?</p>
                   </div>
-                  <p style={{ color: "rgba(255,255,255,.6)", fontSize: ".875rem", lineHeight: 1.78 }}>
+                  <p className="text-sm leading-7" style={{ color: "rgba(255,255,255,.6)" }}>
                     Admissions for 2025–26 are open. Walk in with your documents — no appointment needed.
                   </p>
                   <a
                     href="https://www.google.com/maps/search/Kisan+Inter+College+Sakhopar+Padarauna+Kushinagar+274402"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="adm-btn"
-                    style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", background: "#d97706", color: "#fff", padding: "12px", borderRadius: "10px", fontWeight: 700, fontSize: ".875rem", textDecoration: "none" }}
+                    className="adm-btn flex items-center justify-center gap-2 bg-white text-primary p-3 rounded-xl font-bold text-sm no-underline"
                   >
                     <MapPin size={15} /> Get Directions <ExternalLink size={12} style={{ opacity: .75 }} />
                   </a>
                   <a
-                    href="mailto:kisansakhopar@gmail.com"
-                    className="adm-btn"
-                    style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", background: "rgba(255,255,255,.08)", border: "1px solid rgba(255,255,255,.14)", color: "#fff", padding: "12px", borderRadius: "10px", fontWeight: 600, fontSize: ".875rem", textDecoration: "none" }}
+                    href="/contact#contact-form"
+                    className="adm-btn flex items-center justify-center gap-2 text-white p-3 rounded-xl font-semibold text-sm no-underline"
+                    style={{ background: "rgba(255,255,255,.08)", border: "1px solid rgba(255,255,255,.14)" }}
                   >
                     <Mail size={15} /> Email Us
                   </a>
                 </div>
 
                 {/* walk-in note */}
-                <div style={{ background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: "12px", padding: "1rem 1.2rem", display: "flex", gap: "10px", alignItems: "flex-start" }}>
-                  <Info size={14} color="#16a34a" style={{ flexShrink: 0, marginTop: "2px" }} />
-                  <p style={{ color: "#166534", fontSize: ".8rem", lineHeight: 1.72 }}>
+                <div className="bg-green-50 border border-green-200 rounded-xl p-4 flex gap-2.5 items-start">
+                  <Info size={14} color="#16a34a" className="shrink-0 mt-0.5" />
+                  <p className="text-green-800 leading-7" style={{ fontSize: ".8rem" }}>
                     <strong>No appointment needed.</strong> Walk in during school hours on any working day.
                   </p>
                 </div>
@@ -638,22 +833,6 @@ export default function AdmissionsPage() {
         </section>
 
       </main>
-
-      {/* ══════════════ FOOTER BAND ══════════════ */}
-      <div style={{ background: "var(--primary)", borderTop: "3px solid #d97706" }}>
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p style={{ color: "rgba(255,255,255,.65)", fontSize: ".88rem" }}>
-            Have questions? Reach us at the school office or via email.
-          </p>
-          <a
-            href="mailto:kisansakhopar@gmail.com"
-            className="adm-btn"
-            style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#d97706", color: "#fff", padding: "9px 20px", borderRadius: "8px", fontWeight: 700, fontSize: ".84rem", textDecoration: "none", whiteSpace: "nowrap" }}
-          >
-            <Mail size={13} /> kisansakhopar@gmail.com
-          </a>
-        </div>
-      </div>
 
     </div>
   );
