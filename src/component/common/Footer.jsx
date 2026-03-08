@@ -183,7 +183,7 @@ const Footer = () => {
                 }
               >
                 Classes VI – XII<br />
-                <span className="text-xs text-green-100/40">Science · Commerce · Arts</span>
+                <span className="text-xs text-green-100/40">Science · Maths · Arts</span>
               </ContactItem>
 
             </div>

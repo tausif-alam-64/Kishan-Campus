@@ -5,6 +5,7 @@ import {
   GraduationCap, Microscope, Palette, ExternalLink, Info,
   ChevronDown, ArrowRight, BookOpen, Atom, PenLine,FlaskConical,Landmark
 } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 /* ────────────────────────────────────────────
    INJECT STYLES  (animations + fonts)
@@ -412,7 +413,7 @@ export default function AdmissionsPage() {
             {/* right — info glass card */}
             <div>
               <div
-                className="rounded-2xl overflow-hidden"
+                className="rounded-2xl overflow-hidden shadow-2xl"
                 style={{
                   background: "rgba(255,255,255,.06)",
                   border: "1px solid rgba(255,255,255,.11)",
@@ -809,13 +810,13 @@ export default function AdmissionsPage() {
                   >
                     <MapPin size={15} /> Get Directions <ExternalLink size={12} style={{ opacity: .75 }} />
                   </a>
-                  <a
+                  <NavLink
                     href="/contact#contact-form"
                     className="adm-btn flex items-center justify-center gap-2 text-white p-3 rounded-xl font-semibold text-sm no-underline"
                     style={{ background: "rgba(255,255,255,.08)", border: "1px solid rgba(255,255,255,.14)" }}
                   >
                     <Mail size={15} /> Email Us
-                  </a>
+                  </NavLink>
                 </div>
 
                 {/* walk-in note */}
