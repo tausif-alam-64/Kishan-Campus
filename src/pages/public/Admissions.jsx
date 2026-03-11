@@ -372,8 +372,12 @@ export default function AdmissionsPage() {
             {/* left — headline */}
             <div>
               {/* live badge */}
+             
               <div
-                className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6 bg-[rgba(34,197,94,0.18)] border border-[rgba(34,197,94,0.45)]"
+                className="inline-flex ab-hero items-center gap-2 rounded-full px-4 py-1.5 mb-6 bg-[rgba(34,197,94,0.18)] border border-[rgba(34,197,94,0.45)]"
+                style={{
+                  animationDelay: ".06s"
+                }}
               >
                 <span className="adm-dot inline-block w-3 h-3 rounded-full bg-green-500" />
                 <span className="text-green-600 font-bold uppercase tracking-wider" style={{ fontSize: ".71rem" }}>
@@ -382,19 +386,23 @@ export default function AdmissionsPage() {
               </div>
 
               <h1
-                className="adm-serif font-extrabold md:text-7xl text-secondary leading-tight mb-5"
-                style={{ fontSize: "clamp(2.6rem,5.5vw,4rem)", lineHeight: 1.06 }}
+                className="adm-serif ab-hero font-extrabold md:text-7xl text-secondary leading-tight mb-5"
+                style={{ fontSize: "clamp(2.6rem,5.5vw,4rem)", lineHeight: 1.06, animationDelay: ".18s" }}
               >
                 Your Future<br />
                 <span className="md:text-7xl text-primary leading-tight">Begins Here</span>
               </h1>
 
-              <p className="text-base mb-8 text-ternary">
+              <p className="text-base ab-hero mb-8 text-ternary" style={{
+                  animationDelay: ".30s"
+                }}>
                 Kisan Inter College, Sakhopar has been nurturing students from Kushinagar's rural heartland since{" "}
                 <strong className="text-ternary">1948</strong>. Join us for Class XI & XII — UP Board affiliated.
               </p>
 
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex ab-hero flex-wrap gap-2.5" style={{
+                  animationDelay: ".40s"
+                }}>
                 <a
                   href="#process"
                   className="adm-btn inline-flex items-center gap-2 bg-primary text-white px-10 py-3 font-bold text-sm no-underline"
@@ -413,8 +421,9 @@ export default function AdmissionsPage() {
             {/* right — info glass card */}
             <div>
               <div
-                className="rounded-2xl overflow-hidden shadow-2xl"
+                className="rounded-2xl ab-hero overflow-hidden shadow-2xl"
                 style={{
+                  animationDelay: ".34s",
                   background: "rgba(255,255,255,.06)",
                   border: "1px solid rgba(255,255,255,.11)",
                   backdropFilter: "blur(14px)",
