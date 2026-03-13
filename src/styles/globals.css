@@ -8,6 +8,9 @@
     --ternary:#4a5565;
     --font-heading: "Playfair Display", serif;
     --font-text: "Inter", sans-serif;
+    --bg-first:#f5f7fa;
+    --bg-second:#eef3f8;
+    --bg-third:#e6ecf1
 }
 
 @layer utilities {
@@ -29,6 +32,16 @@
 
   .text-ternary {
     color: var(--ternary);
+  }
+
+  .bg-first {
+    background-color: var(--bg-first);
+  }
+  .bg-second {
+    background-color: var(--bg-second);
+  }
+  .bg-third {
+    background-color: var(--bg-third);
   }
 }
 

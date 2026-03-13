@@ -328,11 +328,11 @@ export default function AdmissionsPage() {
   useEffect(() => { injectStyles(); }, []);
 
   return (
-    <div className="adm-root" style={{ background: "#f5f7fa", color: "var(--primary)" }}>
+    <div className="adm-root bg-first text-primary">
 
       {/* ══════════════ HERO ══════════════ */}
       <section
-        className="relative overflow-hidden flex items-center min-h-135 bg-[#e6ecf1]"
+        className="relative overflow-hidden flex items-center min-h-135 bg-third"
         
       >
 
@@ -397,7 +397,7 @@ export default function AdmissionsPage() {
                   animationDelay: ".30s"
                 }}>
                 Kisan Inter College, Sakhopar has been nurturing students from Kushinagar's rural heartland since{" "}
-                <strong className="text-ternary">1948</strong>. Join us for Class XI & XII — UP Board affiliated.
+                <strong className="text-ternary">1948</strong>. Join us for Class VI & XII — UP Board affiliated.
               </p>
 
               <div className="flex ab-hero flex-wrap gap-2.5" style={{
@@ -444,7 +444,7 @@ export default function AdmissionsPage() {
                   ["Board",    "UP State Board"],
                   ["Category", "Government-Aided"],
                   ["Medium",   "Hindi & English"],
-                  ["Classes",  "XI & XII"],
+                  ["Classes",  "VI & XII"],
                   ["Streams",  "Arts · Sci (PCM) · Sci (PCB)"],
                   ["Location", "Sakhopar, Kushinagar"],
                   ["UDISE",    "09590100202"],
@@ -518,7 +518,7 @@ export default function AdmissionsPage() {
                           className="inline-block rounded-full px-2 py-0.5 mb-1 font-bold uppercase tracking-wider border"
                           style={{ background: s.light, borderColor: s.border, color: s.accent, fontSize: ".65rem" }}
                         >
-                          CLASS XI & XII
+                          CLASS {s.tag}
                         </span>
                         <p
                           className="font-bold leading-tight tracking-wide text-xl text-primary"

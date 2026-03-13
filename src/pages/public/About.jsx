@@ -125,7 +125,7 @@ const SCHOOL = {
 
 const HERO_STATS = [
   { value: "76+",   label: "Years of Service"  },
-  { value: "1000+", label: "Students Enrolled" },
+  { value: "2000+", label: "Students Enrolled" },
   { value: "30+",   label: "Faculty Members"   },
   { value: "3",     label: "Streams Offered"   },
 ];
@@ -197,7 +197,7 @@ const FACULTY_STATS = [
   { value: "30+",          label: "Total Faculty"        },
   { value: "15+",          label: "Yrs Avg. Experience"  },
   { value: "100%",         label: "UP Board Qualified"   },
-  { value: "Hindi & Eng.", label: "Teaching Medium"      },
+  { value: "Hindi", label: "Teaching Medium"      },
 ];
 
 const DEPARTMENTS = [
@@ -231,7 +231,7 @@ const ACHIEVEMENTS = [
 ];
 
 const RECOGNITION_STATS = [
-  { value: "5000+",      label: "Alumni"        },
+  { value: "50000+",      label: "Alumni"        },
   { value: "76+",        label: "Years"         },
   { value: "Kushinagar", label: "Region Served" },
 ];
@@ -318,12 +318,12 @@ function StatBox({ value, label, light = false }) {
   return (
     <div>
       <p
-        className={`font-bold leading-none ${light ? "text-amber-400" : "text-primary"}`}
+        className={`font-bold leading-none ${light ? "text-gray-200" : "text-primary"}`}
         style={{ fontSize: "clamp(1.6rem,3vw,2rem)", fontFamily: "var(--font-heading)" }}
       >
         {value}
       </p>
-      <p className={`text-[0.6rem] uppercase tracking-[0.1em] mt-1 ${light ? "text-white/40" : "text-gray-400"}`}>
+      <p className={`text-[0.6rem] uppercase tracking-[0.1em] mt-1 ${light ? "text-white/60" : "text-gray-400"}`}>
         {label}
       </p>
     </div>
