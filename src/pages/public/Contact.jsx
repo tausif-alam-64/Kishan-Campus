@@ -184,7 +184,7 @@ const Contact = () => {
             Answers for <br /> your questions
           </h2>
 
-          <div className="mt-10 md:mt-16 bg-[#eef3f8]">
+          <div className="mt-10 md:mt-16 bg-second">
   {FAQS.map(({ id, question, answer }) => {
     const isOpen = id === openId;
 
@@ -200,7 +200,7 @@ const Contact = () => {
           transition-all duration-300
           ${isOpen
             ? "border border-[#15283d] border-l-4 bg-transparent"
-            : "hover:bg-[#e6edf4]"
+            : "hover:bg-(--bg-third)"
           }
         `}
       >

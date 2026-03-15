@@ -10,8 +10,12 @@
     --font-text: "Inter", sans-serif;
     --bg-first:#f5f7fa;
     --bg-second:#eef3f8;
-    --bg-third:#e6ecf1
+    --bg-third:#e6edf4  
 }
+/* bg-first for very light bg 
+bg-second for average bg 
+bg-third for hover effect on bg-second but in hover effect use like hover:bg-(--bg-third) */
+
 
 @layer utilities {
   .bg-primary {
