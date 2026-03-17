@@ -18,6 +18,7 @@ import TeacherNotice from "../pages/teacher/TeacherNotice";
 import TeacherUploads from "../pages/teacher/TeacherUploads";
 import ResetPassword from "../pages/auth/ResetPassword";
 import Admissions from "../pages/public/Admissions";
+import ResultsNoticesPage from "../pages/public/ResultsNoticesPage";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
         path: "admissions",
         element: <Admissions />
       },
+      {
+        path: "results",           // /results  → Results, Notices & Calendar page
+        element: <ResultsNoticesPage />
+      },
+      
       {
         path: "*",
         element: <NotFound />,
