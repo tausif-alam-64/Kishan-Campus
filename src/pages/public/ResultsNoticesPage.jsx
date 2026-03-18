@@ -1,21 +1,35 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import {
-  BookOpen, Bell, Calendar, ClipboardList, CalendarDays,
-  Download, Clock, Pin, Search, SearchX, Mail, ChevronRight,
+  BookOpen,
+  Bell,
+  Calendar,
+  ClipboardList,
+  CalendarDays,
+  Download,
+  Clock,
+  Pin,
+  Search,
+  SearchX,
+  Mail,
+  ChevronRight,
 } from "lucide-react";
 
 // ─── Scroll Reveal ────────────────────────────────────────────────────────────
 function useReveal() {
   const ref = useRef(null);
   useEffect(() => {
-    const el = ref.current; if (!el) return;
-    const ob = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) {
-        el.style.opacity = "1";
-        el.style.transform = "translateY(0)";
-        ob.disconnect();
-      }
-    }, { threshold: 0.07 });
+    const el = ref.current;
+    if (!el) return;
+    const ob = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+          ob.disconnect();
+        }
+      },
+      { threshold: 0.07 },
+    );
     ob.observe(el);
     return () => ob.disconnect();
   }, []);
@@ -25,12 +39,15 @@ function useReveal() {
 function Up({ children, delay = 0, className = "" }) {
   const r = useReveal();
   return (
-    <div ref={r} className={className}
+    <div
+      ref={r}
+      className={className}
       style={{
         opacity: 0,
         transform: "translateY(20px)",
         transition: `opacity 0.55s ease ${delay}ms, transform 0.55s ease ${delay}ms`,
-      }}>
+      }}
+    >
       {children}
     </div>
   );
@@ -53,7 +70,11 @@ function Tag({ children, light = false }) {
 function formatDate(iso) {
   if (!iso) return "—";
   const d = new Date(iso);
-  return d.toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" });
+  return d.toLocaleDateString("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
 }
 
 function shortDate(iso) {
@@ -79,7 +100,9 @@ function getDayNum(iso) {
 }
 
 function getMonthShort(iso) {
-  return new Date(iso).toLocaleDateString("en-IN", { month: "short" }).toUpperCase();
+  return new Date(iso)
+    .toLocaleDateString("en-IN", { month: "short" })
+    .toUpperCase();
 }
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -94,9 +117,9 @@ const RESULTS_DATA = [
     session: "2024–25",
     pass_percentage: 94,
     toppers: [
-      { name: "Priya Singh",   marks: 485, out_of: 500, stream: null },
-      { name: "Rahul Verma",   marks: 472, out_of: 500, stream: null },
-      { name: "Anita Yadav",   marks: 461, out_of: 500, stream: null },
+      { name: "Priya Singh", marks: 485, out_of: 500, stream: null },
+      { name: "Rahul Verma", marks: 472, out_of: 500, stream: null },
+      { name: "Anita Yadav", marks: 461, out_of: 500, stream: null },
     ],
     pdf_url: null,
     declared_on: "2025-06-15",
@@ -110,9 +133,9 @@ const RESULTS_DATA = [
     session: "2024–25",
     pass_percentage: 91,
     toppers: [
-      { name: "Sunita Kumari",  marks: 478, out_of: 500, stream: "Arts" },
-      { name: "Deepak Pandey",  marks: 463, out_of: 500, stream: "Arts" },
-      { name: "Rekha Gupta",    marks: 451, out_of: 500, stream: "Arts" },
+      { name: "Sunita Kumari", marks: 478, out_of: 500, stream: "Arts" },
+      { name: "Deepak Pandey", marks: 463, out_of: 500, stream: "Arts" },
+      { name: "Rekha Gupta", marks: 451, out_of: 500, stream: "Arts" },
     ],
     pdf_url: null,
     declared_on: "2025-06-20",
@@ -126,9 +149,9 @@ const RESULTS_DATA = [
     session: "2024–25",
     pass_percentage: 88,
     toppers: [
-      { name: "Amit Tiwari",    marks: 492, out_of: 500, stream: "Science" },
-      { name: "Pooja Mishra",   marks: 474, out_of: 500, stream: "Science" },
-      { name: "Vikram Singh",   marks: 459, out_of: 500, stream: "Science" },
+      { name: "Amit Tiwari", marks: 492, out_of: 500, stream: "Science" },
+      { name: "Pooja Mishra", marks: 474, out_of: 500, stream: "Science" },
+      { name: "Vikram Singh", marks: 459, out_of: 500, stream: "Science" },
     ],
     pdf_url: null,
     declared_on: "2025-06-22",
@@ -142,9 +165,9 @@ const RESULTS_DATA = [
     session: "2024–25",
     pass_percentage: 87,
     toppers: [
-      { name: "Neha Chauhan",   marks: 462, out_of: 500, stream: null },
-      { name: "Ravi Kumar",     marks: 449, out_of: 500, stream: null },
-      { name: "Seema Yadav",    marks: 438, out_of: 500, stream: null },
+      { name: "Neha Chauhan", marks: 462, out_of: 500, stream: null },
+      { name: "Ravi Kumar", marks: 449, out_of: 500, stream: null },
+      { name: "Seema Yadav", marks: 438, out_of: 500, stream: null },
     ],
     pdf_url: null,
     declared_on: "2024-10-18",
@@ -158,9 +181,9 @@ const RESULTS_DATA = [
     session: "2024–25",
     pass_percentage: 96,
     toppers: [
-      { name: "Khushi Verma",   marks: 471, out_of: 500, stream: null },
-      { name: "Mohit Dubey",    marks: 458, out_of: 500, stream: null },
-      { name: "Kavya Singh",    marks: 444, out_of: 500, stream: null },
+      { name: "Khushi Verma", marks: 471, out_of: 500, stream: null },
+      { name: "Mohit Dubey", marks: 458, out_of: 500, stream: null },
+      { name: "Kavya Singh", marks: 444, out_of: 500, stream: null },
     ],
     pdf_url: null,
     declared_on: "2025-04-10",
@@ -381,28 +404,20 @@ const CALENDAR_DATA = [
 
 // ─── Category Badge ───────────────────────────────────────────────────────────
 const NOTICE_BADGE_CLASSES = {
-  Urgent:    "bg-red-100 text-red-700",
-  Exam:      "bg-amber-100 text-amber-800",
-  Holiday:   "bg-emerald-100 text-emerald-700",
-  Event:     "bg-blue-100 text-blue-700",
+  Urgent: "bg-red-100 text-red-700",
+  Exam: "bg-amber-100 text-amber-800",
+  Holiday: "bg-emerald-100 text-emerald-700",
+  Event: "bg-blue-100 text-blue-700",
   Admission: "bg-violet-100 text-violet-700",
-  General:   "bg-slate-100 text-slate-600",
+  General: "bg-slate-100 text-slate-600",
 };
 
-const CALENDAR_DOT_CLASSES = {
-  Holiday:  "bg-emerald-500",
-  Exam:     "bg-amber-500",
-  Event:    "bg-blue-500",
-  PTM:      "bg-violet-500",
-  Vacation: "bg-slate-400",
-};
-
-const CALENDAR_BADGE_CLASSES = {
-  Holiday:  "bg-emerald-100 text-emerald-700",
-  Exam:     "bg-amber-100 text-amber-800",
-  Event:    "bg-blue-100 text-blue-700",
-  PTM:      "bg-violet-100 text-violet-700",
-  Vacation: "bg-slate-100 text-slate-600",
+const CALENDAR_STYLES = {
+  Holiday: { dot: "bg-emerald-500", pill: "bg-emerald-100 text-emerald-700" },
+  Exam: { dot: "bg-amber-500", pill: "bg-amber-100 text-amber-800" },
+  Event: { dot: "bg-blue-500", pill: "bg-blue-100 text-blue-700" },
+  PTM: { dot: "bg-violet-500", pill: "bg-violet-100 text-violet-700" },
+  Vacation: { dot: "bg-slate-400", pill: "bg-slate-100 text-slate-600" },
 };
 
 const MEDAL = ["🥇", "🥈", "🥉"];
@@ -412,20 +427,17 @@ export default function ResultsNoticesPage() {
   const [activeTab, setActiveTab] = useState("results");
 
   // Results filters
-  const [examFilter, setExamFilter]   = useState("All");
+  const [examFilter, setExamFilter] = useState("All");
   const [classFilter, setClassFilter] = useState("All");
 
   // Notices filters
-  const [noticeSearch, setNoticeSearch]   = useState("");
+  const [noticeSearch, setNoticeSearch] = useState("");
   const [noticeCategory, setNoticeCategory] = useState("All");
 
   // ── Filtered Results ───────────────────────────────────────────────────────
   const filteredResults = useMemo(() => {
     return RESULTS_DATA.filter((r) => {
-      const matchExam =
-        examFilter === "All" ||
-        (examFilter === "Board Exams" && r.exam_type === "Board") ||
-        r.exam_type === examFilter;
+      const matchExam = examFilter === "All" || r.exam_type === examFilter;
       const matchClass =
         classFilter === "All" || r.class === classFilter.replace("Class ", "");
       return matchExam && matchClass;
@@ -435,24 +447,26 @@ export default function ResultsNoticesPage() {
   // ── Filtered Notices ───────────────────────────────────────────────────────
   const filteredNotices = useMemo(() => {
     const q = noticeSearch.toLowerCase().trim();
-    return NOTICES_DATA
-      .filter((n) => {
-        const matchCat = noticeCategory === "All" || n.category === noticeCategory;
-        const matchQ   = !q || n.title.toLowerCase().includes(q) || n.body.toLowerCase().includes(q);
-        return matchCat && matchQ;
-      })
-      .sort((a, b) => {
-        if (a.is_pinned && !b.is_pinned) return -1;
-        if (!a.is_pinned && b.is_pinned) return 1;
-        return new Date(b.issued_on) - new Date(a.issued_on);
-      });
+    return NOTICES_DATA.filter((n) => {
+      const matchCat =
+        noticeCategory === "All" || n.category === noticeCategory;
+      const matchQ =
+        !q ||
+        n.title.toLowerCase().includes(q) ||
+        n.body.toLowerCase().includes(q);
+      return matchCat && matchQ;
+    }).sort((a, b) => {
+      if (a.is_pinned && !b.is_pinned) return -1;
+      if (!a.is_pinned && b.is_pinned) return 1;
+      return new Date(b.issued_on) - new Date(a.issued_on);
+    });
   }, [noticeSearch, noticeCategory]);
 
   // ── Grouped Calendar ───────────────────────────────────────────────────────
   const groupedCalendar = useMemo(() => {
     const map = new Map();
     const sorted = [...CALENDAR_DATA].sort(
-      (a, b) => new Date(a.date_from) - new Date(b.date_from)
+      (a, b) => new Date(a.date_from) - new Date(b.date_from),
     );
     sorted.forEach((ev) => {
       const key = getMonthYear(ev.date_from);
@@ -464,20 +478,29 @@ export default function ResultsNoticesPage() {
 
   const upcomingEvents = useMemo(() => {
     const today = new Date();
-    return CALENDAR_DATA
-      .filter((ev) => new Date(ev.date_from) >= today)
+    return CALENDAR_DATA.filter((ev) => new Date(ev.date_from) >= today)
       .sort((a, b) => new Date(a.date_from) - new Date(b.date_from))
       .slice(0, 4);
   }, []);
 
   // ── Exam filter pills ──────────────────────────────────────────────────────
-  const examFilters = ["All", "Board Exams", "Half-Yearly", "Annual", "Unit Test"];
-  const classOptions = ["All Classes", "Class VI", "Class VII", "Class VIII", "Class IX", "Class X", "Class XI", "Class XII"];
-  const noticeCategories = ["All", "Urgent", "Exam", "Holiday", "Event", "Admission", "General"];
+  const examFilters = ["All", "Board", "Half-Yearly", "Annual", "Unit Test"];
+  const classOptions = ["All", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+  const noticeCategories = [
+    "All",
+    "Urgent",
+    "Exam",
+    "Holiday",
+    "Event",
+    "Admission",
+    "General",
+  ];
 
   return (
-    <div className="bg-first min-h-screen" style={{ fontFamily: "var(--font-text)" }}>
-
+    <div
+      className="bg-first min-h-screen"
+      style={{ fontFamily: "var(--font-text)" }}
+    >
       {/* ═══ SECTION 1 — PAGE HEADER ═══════════════════════════════════════════ */}
       <header className="bg-primary py-12 md:py-16 overflow-hidden relative">
         {/* Subtle texture overlay */}
@@ -506,7 +529,8 @@ export default function ResultsNoticesPage() {
             </Up>
             <Up delay={160}>
               <p className="text-white/60 text-sm max-w-lg mt-3 leading-relaxed">
-                Find UP Board results, school examination outcomes, official notices, and the academic calendar — all in one place.
+                Find UP Board results, school examination outcomes, official
+                notices, and the academic calendar — all in one place.
               </p>
             </Up>
             <Up delay={240}>
@@ -537,14 +561,25 @@ export default function ResultsNoticesPage() {
       </header>
 
       {/* ═══ SECTION 2 — TAB NAVIGATION ════════════════════════════════════════ */}
-      <nav className="sticky top-0 z-30 bg-first border-b shadow-sm" style={{ borderColor: "var(--bg-third)" }}>
+      <nav
+        className="sticky top-0 z-30 bg-first border-b shadow-sm"
+        style={{ borderColor: "var(--bg-third)" }}
+      >
         <div className="max-w-7xl mx-auto px-4 md:px-10 flex items-center justify-between">
           {/* Tabs — horizontally scrollable on mobile */}
           <div className="flex overflow-x-auto scrollbar-hide -mb-px">
             {[
-              { key: "results",  label: "Results",  icon: <ClipboardList size={15} /> },
-              { key: "notices",  label: "Notices",  icon: <Bell size={15} /> },
-              { key: "calendar", label: "Calendar", icon: <CalendarDays size={15} /> },
+              {
+                key: "results",
+                label: "Results",
+                icon: <ClipboardList size={15} />,
+              },
+              { key: "notices", label: "Notices", icon: <Bell size={15} /> },
+              {
+                key: "calendar",
+                label: "Calendar",
+                icon: <CalendarDays size={15} />,
+              },
             ].map((tab) => (
               <button
                 key={tab.key}
@@ -563,11 +598,17 @@ export default function ResultsNoticesPage() {
           </div>
           {/* Count badges — desktop only */}
           <div className="hidden md:flex items-center gap-4">
-            <span className="text-xs text-ternary">{RESULTS_DATA.length} Results</span>
+            <span className="text-xs text-ternary">
+              {RESULTS_DATA.length} Results
+            </span>
             <span className="w-px h-4 bg-third" />
-            <span className="text-xs text-ternary">{NOTICES_DATA.length} Notices</span>
+            <span className="text-xs text-ternary">
+              {NOTICES_DATA.length} Notices
+            </span>
             <span className="w-px h-4 bg-third" />
-            <span className="text-xs text-ternary">{CALENDAR_DATA.length} Events</span>
+            <span className="text-xs text-ternary">
+              {CALENDAR_DATA.length} Events
+            </span>
           </div>
         </div>
       </nav>
@@ -589,7 +630,10 @@ export default function ResultsNoticesPage() {
                         ? "bg-primary text-white border-primary"
                         : "bg-second text-ternary hover:bg-third"
                     }`}
-                    style={{ borderColor: examFilter === f ? undefined : "var(--bg-third)" }}
+                    style={{
+                      borderColor:
+                        examFilter === f ? undefined : "var(--bg-third)",
+                    }}
                   >
                     {f}
                   </button>
@@ -597,19 +641,14 @@ export default function ResultsNoticesPage() {
               </div>
               {/* Class filter */}
               <select
-                value={classFilter === "All" ? "All Classes" : `Class ${classFilter}`}
-                onChange={(e) => {
-                  const v = e.target.value;
-                  setClassFilter(v === "All Classes" ? "All" : v.replace("Class ", ""));
-                }}
-                className="bg-second text-ternary text-sm px-3 py-2 border focus:outline-none focus:border-primary"
-                style={{
-                  borderColor: "var(--bg-third)",
-                  fontFamily: "var(--font-text)",
-                }}
+              className="bg-third p-1 rounded"
+                value={classFilter}
+                onChange={(e) => setClassFilter(e.target.value)}
               >
-                {classOptions.map((o) => (
-                  <option key={o}>{o}</option>
+                {classOptions.map((c) => (
+                  <option key={c} value={c}>
+                    {c === "All" ? "All Classes" : `Class ${c}`}
+                  </option>
                 ))}
               </select>
             </div>
@@ -626,8 +665,12 @@ export default function ResultsNoticesPage() {
               <Up delay={0} className="md:col-span-2">
                 <div className="flex flex-col items-center justify-center py-20 bg-second">
                   <SearchX size={40} className="text-ternary opacity-30 mb-3" />
-                  <p className="text-sm text-ternary">No results match this filter</p>
-                  <p className="text-xs text-ternary opacity-60 mt-1">Try selecting "All" or a different class</p>
+                  <p className="text-sm text-ternary">
+                    No results match this filter
+                  </p>
+                  <p className="text-xs text-ternary opacity-60 mt-1">
+                    Try selecting "All" or a different class
+                  </p>
                 </div>
               </Up>
             )}
@@ -716,7 +759,9 @@ export default function ResultsNoticesPage() {
               {[...groupedCalendar.entries()].map(([month, events], mi) => (
                 <Up key={month} delay={mi * 80}>
                   {/* Month header */}
-                  <div className={`flex items-center gap-3 mb-4 ${mi === 0 ? "mt-0" : "mt-10"}`}>
+                  <div
+                    className={`flex items-center gap-3 mb-4 ${mi === 0 ? "mt-0" : "mt-10"}`}
+                  >
                     <h3
                       className="text-primary font-bold text-lg"
                       style={{ fontFamily: "var(--font-heading)" }}
@@ -756,7 +801,7 @@ export default function ResultsNoticesPage() {
                           {/* Content */}
                           <div className="flex-1">
                             <span
-                              className={`inline-block text-xs font-semibold px-2.5 py-0.5 ${CALENDAR_BADGE_CLASSES[ev.type] || "bg-slate-100 text-slate-600"}`}
+                              className={`inline-block text-xs font-semibold px-2.5 py-0.5 ${CALENDAR_STYLES[ev.type]?.pill || "bg-slate-100 text-slate-600"}`}
                             >
                               {ev.type}
                             </span>
@@ -768,12 +813,16 @@ export default function ResultsNoticesPage() {
                             </p>
                             {isMultiDay && (
                               <p className="text-xs text-ternary mt-0.5">
-                                {shortDate(ev.date_from)} – {shortDate(ev.date_to)}
+                                {shortDate(ev.date_from)} –{" "}
+                                {shortDate(ev.date_to)}
                               </p>
                             )}
                           </div>
                           {/* Calendar icon */}
-                          <Calendar size={14} className="text-ternary opacity-50 mt-1 shrink-0" />
+                          <Calendar
+                            size={14}
+                            className="text-ternary opacity-50 mt-1 shrink-0"
+                          />
                         </div>
                       );
                     })}
@@ -802,7 +851,7 @@ export default function ResultsNoticesPage() {
                           style={{ borderColor: "var(--bg-third)" }}
                         >
                           <span
-                            className={`w-2 h-2 rounded-full shrink-0 ${CALENDAR_DOT_CLASSES[ev.type] || "bg-slate-400"}`}
+                            className={`w-2 h-2 rounded-full shrink-0 ${CALENDAR_STYLES[ev.type]?.dot || "bg-slate-400"}`}
                           />
                           <div className="flex-1 min-w-0">
                             <p className="text-sm text-primary font-medium leading-snug truncate">
@@ -815,7 +864,9 @@ export default function ResultsNoticesPage() {
                         </div>
                       ))}
                       {upcomingEvents.length === 0 && (
-                        <p className="text-xs text-ternary italic">No upcoming events</p>
+                        <p className="text-xs text-ternary italic">
+                          No upcoming events
+                        </p>
                       )}
                     </div>
                   </div>
@@ -831,12 +882,14 @@ export default function ResultsNoticesPage() {
                       Legend
                     </h4>
                     <div className="flex flex-col">
-                      {Object.entries(CALENDAR_DOT_CLASSES).map(([type, dotClass]) => (
+                      {Object.entries(CALENDAR_STYLES).map(([type, style]) => (
                         <div
                           key={type}
                           className="flex items-center gap-2 py-1.5 text-xs text-ternary"
                         >
-                          <span className={`w-2 h-2 rounded-full ${dotClass}`} />
+                          <span
+                            className={`w-2 h-2 rounded-full ${style.dot}`}
+                          />
                           {type}
                         </div>
                       ))}
@@ -872,7 +925,9 @@ export default function ResultsNoticesPage() {
           </div>
           {/* Right */}
           <div>
-            <p className="text-sm text-ternary">Need help? Contact the school office</p>
+            <p className="text-sm text-ternary">
+              Need help? Contact the school office
+            </p>
             <div className="flex items-center gap-4 mt-1 flex-wrap">
               <span className="flex items-center gap-1.5 text-sm text-primary font-medium">
                 <Mail size={14} className="text-ternary" />
@@ -934,7 +989,9 @@ function ResultCard({ result }) {
           <div>
             <div className="flex justify-between text-xs text-ternary mb-1.5">
               <span>Pass Rate</span>
-              <span className="font-bold text-primary">{result.pass_percentage}%</span>
+              <span className="font-bold text-primary">
+                {result.pass_percentage}%
+              </span>
             </div>
             <div className="w-full h-2 bg-third">
               <div
@@ -961,7 +1018,9 @@ function ResultCard({ result }) {
                       <span>{MEDAL[idx]}</span>
                       {t.name}
                       {t.stream && (
-                        <span className="text-xs text-ternary font-normal">({t.stream})</span>
+                        <span className="text-xs text-ternary font-normal">
+                          ({t.stream})
+                        </span>
                       )}
                     </span>
                     <span className="text-sm font-bold text-primary">
@@ -1010,17 +1069,19 @@ function ResultCard({ result }) {
 // ─── Status Badge ─────────────────────────────────────────────────────────────
 function StatusBadge({ status }) {
   const classes = {
-    declared:   "bg-emerald-100 text-emerald-700",
-    upcoming:   "bg-blue-100 text-blue-700",
+    declared: "bg-emerald-100 text-emerald-700",
+    upcoming: "bg-blue-100 text-blue-700",
     processing: "bg-amber-100 text-amber-700",
   };
   const labels = {
-    declared:   "Declared",
-    upcoming:   "Upcoming",
+    declared: "Declared",
+    upcoming: "Upcoming",
     processing: "Processing",
   };
   return (
-    <span className={`text-xs font-semibold px-2.5 py-1 ${classes[status] || classes.processing}`}>
+    <span
+      className={`text-xs font-semibold px-2.5 py-1 ${classes[status] || classes.processing}`}
+    >
       {labels[status] || status}
     </span>
   );
@@ -1038,11 +1099,7 @@ function NoticeCard({ notice }) {
           ? "border-l-4 border-primary bg-second"
           : "bg-second hover:bg-third border"
       }`}
-      style={
-        notice.is_pinned
-          ? undefined
-          : { borderColor: "var(--bg-third)" }
-      }
+      style={notice.is_pinned ? undefined : { borderColor: "var(--bg-third)" }}
     >
       <div className="flex items-start gap-5 flex-col sm:flex-row">
         {/* Main content */}
@@ -1051,7 +1108,8 @@ function NoticeCard({ notice }) {
           <div className="flex flex-wrap items-center gap-2 mb-2">
             <span
               className={`text-xs font-semibold px-2.5 py-0.5 ${
-                NOTICE_BADGE_CLASSES[notice.category] || "bg-slate-100 text-slate-600"
+                NOTICE_BADGE_CLASSES[notice.category] ||
+                "bg-slate-100 text-slate-600"
               }`}
             >
               {notice.category}
