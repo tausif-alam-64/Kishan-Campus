@@ -127,7 +127,7 @@ const HERO_STATS = [
   { value: "76+",   label: "Years of Service"  },
   { value: "2000+", label: "Students Enrolled" },
   { value: "30+",   label: "Faculty Members"   },
-  { value: "3",     label: "Streams Offered"   },
+  
 ];
 
 const GLANCE_ROWS = [
@@ -289,7 +289,7 @@ function Eyebrow({ children, light = false }) {
   return (
     <p
       className={`flex items-center gap-2 mb-2.5 uppercase tracking-widest font-bold text-xs ${
-        light ? "text-amber-400" : "text-gray-400"
+        light ? "text-secondary" : "text-gray-400"
       }`}
     >
       <span className={`inline-block w-5 h-px shrink-0 ${light ? "bg-amber-400" : "bg-gray-400"}`} />
@@ -323,7 +323,7 @@ function StatBox({ value, label, light = false }) {
       >
         {value}
       </p>
-      <p className={`text-[0.6rem] uppercase tracking-[0.1em] mt-1 ${light ? "text-white/60" : "text-gray-400"}`}>
+      <p className={`text-[0.6rem] uppercase tracking-[0.1em] mt-3 ${light ? "text-white/40" : "text-gray-500"}`}>
         {label}
       </p>
     </div>
@@ -349,133 +349,133 @@ function Card({ children, className = "", style = {} }) {
 // ── §1  HERO ──────────────────────────────────────────────────────────────────
 function HeroSection() {
   return (
-    <section className="bg-primary relative overflow-hidden min-h-[580px] flex items-center">
+    <section className="relative overflow-hidden flex items-center min-h-[580px] bg-third">
 
-      {/* Amber top rule */}
-      <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-700 via-amber-400 to-amber-700" />
+  {/* ── geometric background shapes ── */}
+  <div aria-hidden className="absolute inset-0 pointer-events-none">
+    {/* circles */}
+    <div
+      className="absolute rounded-full"
+      style={{ top: "-180px", right: "-180px", width: "560px", height: "560px", border: "1px solid rgba(251,191,36,.1)" }}
+    />
+    <div
+      className="absolute rounded-full"
+      style={{ top: "-90px", right: "-90px", width: "340px", height: "340px", border: "1px solid rgba(251,191,36,.07)" }}
+    />
+    {/* dot grid */}
+    <svg className="absolute bottom-0 left-0 opacity-[0.07]" width="300" height="200" viewBox="0 0 300 200">
+      {Array.from({ length: 10 }, (_, row) =>
+        Array.from({ length: 15 }, (_, col) => (
+          <circle key={`${row}-${col}`} cx={col * 20 + 10} cy={row * 20 + 10} r="1.5" fill="#fbbf24" />
+        ))
+      )}
+    </svg>
+    {/* diagonal slice */}
+    <div
+      className="absolute left-0 right-0"
+      style={{ bottom: "-1px", height: "80px", background: "#f5f7fa", clipPath: "polygon(0 100%,100% 100%,100% 40%,0 100%)" }}
+    />
+  </div>
 
-      {/* Background image — subtle texture, not dominating */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ backgroundImage: `url(${aboutHero})`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.12 }}
-      />
+  <div className="max-w-6xl mx-auto w-full px-6 md:px-12 py-20 md:py-28 relative z-10">
+    <div className="grid md:grid-cols-2 gap-14 items-center">
 
-      {/* Decorative rings */}
-      <div aria-hidden className="absolute pointer-events-none" style={{ top: "-160px", right: "-160px", width: "520px", height: "520px", borderRadius: "50%", border: "1px solid rgba(251,191,36,.08)" }} />
-      <div aria-hidden className="absolute pointer-events-none" style={{ top: "-80px", right: "-80px", width: "320px", height: "320px", borderRadius: "50%", border: "1px solid rgba(251,191,36,.05)" }} />
+      {/* left — headline */}
+      <div>
+        {/* badge — matches Admissions green badge pattern */}
+        <div
+          className="ab-hero inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6 bg-#213b5b border border-[rgba(34,37,197,0.45)]"
+          style={{ animationDelay: ".06s" }}
+        >
+          <span className="inline-block w-3 h-3 rounded-full bg-primary" />
+          <span className="text-primary font-bold uppercase tracking-wider" style={{ fontSize: ".71rem" }}>
+            OUR STORY · SINCE 1948
+          </span>
+        </div>
 
-      {/* Dot grid */}
-      <svg aria-hidden className="absolute bottom-0 left-0 pointer-events-none" style={{ opacity: 0.06 }} width="260" height="180" viewBox="0 0 260 180">
-        {Array.from({ length: 9 }, (_, row) =>
-          Array.from({ length: 13 }, (_, col) => (
-            <circle key={`${row}-${col}`} cx={col * 20 + 10} cy={row * 20 + 10} r="1.5" fill="#fbbf24" />
-            
-          ))
-        )}
-      </svg>
+        <h1
+          className="ab-hero font-extrabold text-secondary leading-tight mb-5"
+          style={{ fontSize: "clamp(2.6rem,5.5vw,4rem)", lineHeight: 1.06, animationDelay: ".18s" }}
+        >
+          About<br />
+          <span className="text-primary">Kisan Inter<br />College</span>
+        </h1>
 
-      {/* Diagonal clip — matches AdmissionsPage */}
-      <div
-        aria-hidden
-        className="absolute left-0 right-0 pointer-events-none"
-        style={{ bottom: "-1px", height: "72px", background: "#f5f7fa", clipPath: "polygon(0 100%,100% 100%,100% 40%,0 100%)" }}
-      />
+        <p
+          className="ab-hero text-base text-ternary mb-8"
+          style={{ animationDelay: ".30s", lineHeight: 1.85 }}
+        >
+          Rooted in the heart of Kushinagar, Kisan Inter College has stood as a beacon of rural
+          education for over seven decades — making quality learning accessible to every student,
+          regardless of background.
+        </p>
 
-      {/* Content grid */}
-      <div className="max-w-6xl mx-auto w-full px-6 md:px-12 py-20 md:py-28 relative z-10">
-        <div className="grid md:grid-cols-2 gap-14 items-center">
+        <div
+          className="ab-hero flex  gap-2.5"
+          style={{ animationDelay: ".40s" }}
+        >
+          <a
+            href="#history"
+            className="ab-btn inline-block items-center gap-2 bg-primary text-white px-13 py-3 text-sm no-underline"
+          >
+            Our History
+          </a>
+          <a
+            href="#contact"
+            className="ab-btn inline-flex items-center gap-2 text-primary px-6 py-3 font-semibold text-sm no-underline shadow-2xl bg-[#f2f4f6] border border-secondary"
+          >
+            <MapPin size={15} /> Visit Us
+          </a>
+        </div>
 
-          {/* Left: headline + CTA + stats */}
-          <div>
-            <div className="ab-hero" style={{ animationDelay: ".06s" }}>
-              <Eyebrow light>Our Story · Since 1948</Eyebrow>
-            </div>
-
-            <div className="ab-hero" style={{ animationDelay: ".18s" }}>
-              <h1
-                className="font-extrabold text-white leading-tight mb-5"
-                style={{ fontSize: "clamp(2.6rem,5.5vw,4rem)", lineHeight: 1.06 }}
-              >
-                About<br />
-                <span className="text-amber-400">Kisan Inter<br />College</span>
-              </h1>
-            </div>
-
-            <div className="ab-hero" style={{ animationDelay: ".30s" }}>
-              <p className="text-base mb-8" style={{ color: "rgba(255,255,255,.60)", lineHeight: 1.85 }}>
-                Rooted in the heart of Kushinagar, Kisan Inter College has stood as a beacon of rural
-                education for over seven decades — making quality learning accessible to every student,
-                regardless of background.
-              </p>
-            </div>
-
-            <div className="ab-hero flex flex-wrap gap-3 mb-10" style={{ animationDelay: ".40s" }}>
-              <a
-                href="#history"
-                className="ab-btn inline-flex items-center gap-2 bg-amber-500 text-primary px-8 py-3 font-bold text-sm no-underline"
-              >
-                Our History
-              </a>
-              <a
-                href="#contact"
-                className="ab-btn inline-flex items-center gap-2 font-semibold text-sm px-6 py-3 no-underline"
-                style={{ color: "#fff", border: "1px solid rgba(255,255,255,.22)", background: "rgba(255,255,255,.06)" }}
-              >
-                <MapPin size={14} /> Visit Us
-              </a>
-            </div>
-
-            <div
-              className="ab-hero flex flex-wrap gap-8 pt-6"
-              style={{ animationDelay: ".52s", borderTop: "1px solid rgba(255,255,255,.09)" }}
-            >
-              {HERO_STATS.map(({ value, label }) => (
-                <StatBox key={label} value={value} label={label} light />
-              ))}
-            </div>
-          </div>
-
-          {/* Right: At a Glance glass card */}
-          <div className="ab-hero" style={{ animationDelay: ".34s" }}>
-            <div
-              className="overflow-hidden"
-              style={{
-                background: "rgba(255,255,255,.05)",
-                border: "1px solid rgba(255,255,255,.10)",
-                backdropFilter: "blur(14px)",
-                borderRadius: "1rem",
-              }}
-            >
-              {/* Header */}
-              <div
-                className="px-5 py-3.5 flex items-center gap-2.5"
-                style={{ borderBottom: "1px solid rgba(255,255,255,.07)", background: "rgba(217,119,6,.10)" }}
-              >
-                <Building2 size={13} style={{ color: "#fbbf24" }} />
-                <span className="text-amber-400 uppercase tracking-widest font-bold text-xs">
-                  At a Glance
-                </span>
-              </div>
-
-              {/* Rows */}
-              {GLANCE_ROWS.map(({ label, value }, i) => (
-                <div
-                  key={label}
-                  className="flex justify-between items-center px-5 py-2.5"
-                  style={{ borderBottom: i < GLANCE_ROWS.length - 1 ? "1px solid rgba(255,255,255,.05)" : "none" }}
-                >
-                  <span className="text-xs" style={{ color: "rgba(255,255,255,.35)" }}>{label}</span>
-                  <span className="text-sm font-semibold text-white text-right" style={{ maxWidth: "58%" }}>
-                    {value}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
+        {/* stats row */}
+        <div
+          className="ab-hero flex flex-wrap gap-8 pt-6 mt-8 border-t border-white/10"
+          style={{ animationDelay: ".52s" }}
+        >
+          {HERO_STATS.map(({ value, label }) => (
+            <StatBox key={label} value={value} label={label}  />
+          ))}
         </div>
       </div>
-    </section>
+
+      {/* right — info glass card */}
+      <div
+        className="ab-hero rounded-2xl overflow-hidden shadow-2xl"
+        style={{
+          animationDelay: ".34s",
+          background: "rgba(255,255,255,.06)",
+          border: "1px solid rgba(255,255,255,.11)",
+          backdropFilter: "blur(14px)",
+        }}
+      >
+        <div
+          className="px-6 py-4 flex items-center gap-2.5"
+          style={{ borderBottom: "1px solid rgba(255,255,255,.08)" }}
+        >
+          <Building2 size={15} className="text-primary" />
+          <span className="uppercase tracking-wider font-bold text-secondary text-xs">
+            AT A GLANCE
+          </span>
+        </div>
+
+        {GLANCE_ROWS.map(({ label, value }, i) => (
+          <div
+            key={label}
+            className="flex justify-between items-center gap-3 px-6 py-3"
+            style={{ borderBottom: i < GLANCE_ROWS.length - 1 ? "1px solid rgba(255,255,255,.05)" : "none" }}
+          >
+            <span className="text-xs text-secondary">{label}</span>
+            <span className="text-primary font-semibold text-right" style={{ fontSize: ".82rem" }}>
+              {value}
+            </span>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
   );
 }
 
