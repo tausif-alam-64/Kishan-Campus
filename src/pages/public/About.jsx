@@ -349,7 +349,7 @@ function Card({ children, className = "", style = {} }) {
 // ── §1  HERO ──────────────────────────────────────────────────────────────────
 function HeroSection() {
   return (
-    <section className="relative overflow-hidden flex items-center min-h-[580px] bg-third">
+    <section className="relative overflow-hidden flex items-center min-h-135 bg-third">
 
   {/* ── geometric background shapes ── */}
   <div aria-hidden className="absolute inset-0 pointer-events-none">
@@ -373,7 +373,7 @@ function HeroSection() {
     {/* diagonal slice */}
     <div
       className="absolute left-0 right-0"
-      style={{ bottom: "-1px", height: "80px", background: "#f5f7fa", clipPath: "polygon(0 100%,100% 100%,100% 40%,0 100%)" }}
+      style={{ bottom: "-1px", height: "80px", background: "white", clipPath: "polygon(0 100%,100% 100%,100% 40%,0 100%)" }}
     />
   </div>
 
@@ -567,7 +567,7 @@ function VisionMissionSection() {
 
             {/* Vision — white */}
             <div
-              className="bg-white border border-gray-200 p-8 flex flex-col"
+              className="bg-white border rounded-2xl  border-gray-200 p-8 flex flex-col"
               style={{ boxShadow: "0 2px 10px rgba(21,40,61,.06)" }}
             >
               <div className="flex items-center gap-3 mb-5">
@@ -585,7 +585,7 @@ function VisionMissionSection() {
 
             {/* Mission — dark navy */}
             <div
-              className="bg-primary p-8 flex flex-col"
+              className="bg-primary rounded-2xl p-8 flex flex-col"
               style={{ boxShadow: "0 8px 32px rgba(21,40,61,.22)" }}
             >
               <div className="flex items-center gap-3 mb-5">
@@ -610,7 +610,7 @@ function VisionMissionSection() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {VALUES.map(({ icon: Icon, accent, light, border, title, desc }, i) => (
             <Reveal key={title} delay={i * 55}>
-              <Card className="p-6">
+              <Card className="p-6 rounded-xl">
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 shrink-0"
                   style={{ background: light, border: `1.5px solid ${border}` }}
@@ -650,27 +650,27 @@ function PrincipalSection() {
           {/* Left: profile card */}
           <Reveal>
             <div
-              className="bg-primary overflow-hidden"
+              className="bg-primary overflow-hidden rounded-xl"
               style={{ boxShadow: "0 8px 32px rgba(21,40,61,.22)" }}
             >
-              <div className="h-0.5 bg-gradient-to-r from-amber-700 via-amber-400 to-amber-700" />
+              <div className="h-1 bg-linear-to-r from-green-600 via-green-400 to-green-600" />
               <div className="p-8">
 
                 {/* Avatar */}
                 <div className="flex flex-col items-center text-center mb-7">
                   <div
-                    className="w-20 h-20 rounded-full flex items-center justify-center mb-4"
-                    style={{ background: "rgba(217,119,6,.12)", border: "2px solid rgba(217,119,6,.30)" }}
+                    className="w-20 h-20 rounded-full flex items-center justify-center mb-4 border-2 border-white/50"
+                    
                   >
-                    <User size={32} style={{ color: "#fbbf24" }} />
+                    <User size={32} className="text-white/80" />
                   </div>
                   <p
-                    className="font-bold text-white text-xl mb-1"
+                    className="font-bold text-white/80 text-xl mb-1"
                     style={{ fontFamily: "var(--font-heading)" }}
                   >
                     {PRINCIPAL.name}
                   </p>
-                  <p className="text-amber-400 uppercase tracking-widest font-bold text-xs">
+                  <p className="text-white/70 uppercase tracking-widest font-bold text-xs">
                     {PRINCIPAL.title}
                   </p>
                 </div>
@@ -685,7 +685,7 @@ function PrincipalSection() {
                 ))}
 
                 {/* Quote */}
-                <div className="mt-7 pl-4" style={{ borderLeft: "3px solid #d97706" }}>
+                <div className="mt-7 pl-4" style={{ borderLeft: "3px solid gray" }}>
                   <p
                     className="text-sm italic leading-7"
                     style={{ color: "rgba(255,255,255,.52)", fontFamily: "var(--font-heading)" }}
@@ -709,7 +709,7 @@ function PrincipalSection() {
             ))}
             <Reveal delay={380}>
               <p
-                className="text-amber-600 italic text-lg mt-2"
+                className="text-secondary italic text-lg mt-2"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
                 — Principal, Kisan Inter College
@@ -1081,7 +1081,7 @@ export default function AboutPage() {
   return (
     <div style={{ background: "#f5f7fa", color: "var(--primary)" }}>
       <HeroSection />
-      <div className="h-px bg-linear-to-r from-transparent via-slate-300 to-transparent" />
+      <div className="h-px" />
       <HistorySection />
       <div className="h-px bg-linear-to-r from-transparent via-slate-300 to-transparent" />
       <VisionMissionSection />
