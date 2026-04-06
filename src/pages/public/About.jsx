@@ -745,7 +745,7 @@ function FacultySection() {
             {FACULTY_STATS.map(({ value, label }) => (
               <div
                 key={label}
-                className="bg-white border border-gray-200 p-5"
+                className="bg-white border border-gray-200 p-5 rounded"
                 style={{ boxShadow: "0 2px 8px rgba(21,40,61,.05)" }}
               >
                 <p
@@ -764,7 +764,7 @@ function FacultySection() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {DEPARTMENTS.map(({ icon: Icon, accent, light, border, name, subjects }, i) => (
             <Reveal key={name} delay={i * 55}>
-              <Card className="p-6">
+              <Card className="p-6 rounded-2xl">
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 shrink-0"
                   style={{ background: light, border: `1.5px solid ${border}` }}
@@ -807,7 +807,7 @@ function FacilitiesSection() {
           {FACILITIES.map(({ icon: Icon, accent, name, desc }, i) => (
             <Reveal key={name} delay={i * 45}>
               {/* Use slightly off-white bg — mirrors adm-gb card layout */}
-              <Card className="p-6" style={{ background: "#f9fafb" }}>
+              <Card className="p-6 rounded-2xl" style={{ background: "#f9fafb" }}>
                 <div className="w-10 h-10 rounded-xl bg-white border border-gray-200 flex items-center justify-center mb-4 shrink-0">
                   <Icon size={16} style={{ color: accent }} />
                 </div>
@@ -908,7 +908,7 @@ function AffiliationSection() {
         <div className="grid sm:grid-cols-3 gap-5 mb-5">
           {AFFILIATION_CARDS.map(({ icon: Icon, accent, light, border, title, subtitle, desc }, i) => (
             <Reveal key={title} delay={i * 80}>
-              <Card className="p-7">
+              <Card className="p-7 rounded-xl">
                 <div
                   className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 shrink-0"
                   style={{ background: light, border: `1.5px solid ${border}` }}
@@ -1081,7 +1081,7 @@ export default function AboutPage() {
   return (
     <div style={{ background: "#f5f7fa", color: "var(--primary)" }}>
       <HeroSection />
-      <div className="h-px" />
+      <div className="" />
       <HistorySection />
       <div className="h-px bg-linear-to-r from-transparent via-slate-300 to-transparent" />
       <VisionMissionSection />

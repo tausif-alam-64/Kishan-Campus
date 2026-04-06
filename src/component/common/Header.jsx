@@ -1,8 +1,10 @@
 import React from 'react'
 
 const Header = ({mainImg, heading, subHeading}) => {
+    
   return (
     <main>
+
         {/* Hero Image */}
         <section className='max-md:h-[27vh] overflow-hidden w-full'>
             <img src={mainImg} alt="Main Image" className='block w-full h-full object-cover rounded-[inharit]'/>

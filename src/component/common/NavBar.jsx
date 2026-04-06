@@ -25,9 +25,10 @@ const NavBar = () => {
   };
 
   const navLinks = user
-    ? roleBasedLinks[userRole] || publicNavLinks
-    : publicNavLinks;
-
+    ? [...publicNavLinks, ...(roleBasedLinks[userRole] || [])]
+  : publicNavLinks;
+ console.log("USER:", user);
+console.log("ROLE:", userRole);
   const handleLogout = async () => {
     await signOut();
     navigate("/");
@@ -43,7 +44,7 @@ const NavBar = () => {
           />
         </NavLink>
         <ul className="hidden md:flex space-x-6">
-          {publicNavLinks.map((link) => (
+          {navLinks.map((link) => (
             <li key={link.path}>
               <NavLink
                 to={link.path}
@@ -122,7 +123,7 @@ const NavBar = () => {
 
         {/* Menu Links */}
         <ul className="flex flex-col">
-          {publicNavLinks.map((link) => (
+          {navLinks.map((link) => (
             <li key={link.path}>
               <NavLink
                 to={link.path}

@@ -381,7 +381,7 @@ export default function AdmissionsPage() {
               >
                 <span className="adm-dot inline-block w-3 h-3 rounded-full bg-green-500" />
                 <span className="text-green-600 font-bold uppercase tracking-wider" style={{ fontSize: ".71rem" }}>
-                  ADMISSIONS OPEN · 2025–26
+                  ADMISSIONS OPEN · 2026–27
                 </span>
               </div>
 

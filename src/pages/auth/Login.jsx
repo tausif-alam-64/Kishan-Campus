@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../../services/supabase/authService";
 import { useAuth } from "../../hooks/useAuth";
 import redirectByRole from "../../utils/redirectByRole";
+import { useEffect } from "react";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -34,8 +35,14 @@ const Login = () => {
     setLoading(false);
 
     if(error) setError(error.message);
-    else navigate(redirectByRole(userRole))
+    
   }
+
+  useEffect(() => {
+    if(userRole){
+      navigate(redirectByRole(userRole))
+    }
+  }, [userRole])
   const valideValue = Object.values(data).every((el) => el) 
   return (
     <section className="w-full container mx-auto px-2">

@@ -8,12 +8,16 @@ export const publicNavLinks = [
         path : "/about"
     },
     {
-        label : "Contact Us",
-        path : "/contact"
-    },
-    {
       label: "Admissions",
       path: "/admissions"
+    },
+    {
+      label: "Result & Notices",
+      path: "/results"
+    },
+    {
+        label : "Contact Us",
+        path : "/contact"
     }
     
 ]

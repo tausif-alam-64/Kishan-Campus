@@ -45,6 +45,11 @@ const router = createBrowserRouter([
         path: "results",           // /results  → Results, Notices & Calendar page
         element: <ResultsNoticesPage />
       },
+      {
+        path: "/student",
+        element:  <StudentDashboard />
+        
+      },
       
       {
         path: "*",
@@ -64,28 +69,28 @@ const router = createBrowserRouter([
   {
     element: <ProtectedRoute />,
     children: [
-      {
-        path: "/student",
-        element: <RoleRoute role="student" />,
-        children: [{index: true, element: <StudentDashboard />}]
-      },
+      // {
+      //   path: "/student",
+      //   element: <RoleRoute role="student" />,
+      //   children: [{index: true, element: <StudentDashboard />}]
+      // },
       {
         path: "/teacher",
         element: <RoleRoute role="teacher" />,
         children:[{index: true, element: <TeacherDashboard />},
           {
-            path: "/teacher/notices",
+            path: "notices",
             element: <TeacherNotice />
           },
           {
-            path: "/teacher/uploads",
+            path: "uploads",
             element: <TeacherUploads />
           }
         ]
       },
       {
         path : "/admin",
-        element: <RoleRoute role="/admin" />,
+        element: <RoleRoute role="admin" />,
         children:[{index: true, element: <AdminDashboard />}]
       },
     ]
