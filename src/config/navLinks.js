@@ -11,10 +11,10 @@ export const publicNavLinks = [
       label: "Admissions",
       path: "/admissions"
     },
-    {
-      label: "Result & Notices",
-      path: "/results"
-    },
+    // {
+    //   label: "Result & Notices",
+    //   path: "/results"
+    // },
     {
         label : "Contact Us",
         path : "/contact"

@@ -1,275 +1,514 @@
-import Hero from "../../component/common/Hero";
-import imgGroup from "../../assets/about-2.avif";
-import imgSingle from "../../assets/about-3.avif";
-import design from "../../assets/design.png";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaArrowRight, FaArrowUp } from "react-icons/fa";
-import { MdOutlineArrowOutward } from "react-icons/md";
-import booksImg from "../../assets/books.svg";
+import Hero from "../../component/common/Hero";
+import imgGroup  from "../../assets/about-2.avif";
+import imgSingle from "../../assets/about-3.avif";
+import booksImg    from "../../assets/books.svg";
 import buildingImg from "../../assets/building.svg";
-import heartImg from "../../assets/heart.svg";
+import heartImg    from "../../assets/heart.svg";
+import { supabase } from "../../services/supabase/supabaseClient";
 
+/* ─────────────────────────────────────────
+   SCROLL REVEAL
+───────────────────────────────────────── */
+function useReveal() {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    const ob = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { el.style.opacity="1"; el.style.transform="translateY(0)"; ob.disconnect(); }
+    }, { threshold: 0.07 });
+    ob.observe(el); return () => ob.disconnect();
+  }, []);
+  return ref;
+}
+function Up({ children, delay=0, className="" }) {
+  const r = useReveal();
+  return (
+    <div ref={r} className={className}
+      style={{ opacity:0, transform:"translateY(22px)", transition:`opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms` }}>
+      {children}
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
+   DIVIDER
+───────────────────────────────────────── */
+const Divider = () => (
+  <div className="h-px bg-gradient-to-r from-transparent via-[#ddd8ce] to-transparent" />
+);
+
+/* ─────────────────────────────────────────
+   HOME
+───────────────────────────────────────── */
 const Home = () => {
+  const [notices, setNotices] = useState([]);
+  const [loadingNotices, setLoadingNotices] = useState(true);
+
+  useEffect(() => {
+    const load = async () => {
+      setLoadingNotices(true);
+      const { data } = await supabase
+        .from("notices")
+        .select("id,title,category,issued_on,is_pinned")
+        .eq("is_published", true)
+        .order("is_pinned", { ascending: false })
+        .order("issued_on", { ascending: false })
+        .limit(4);
+      setNotices(data || []);
+      setLoadingNotices(false);
+    };
+    load();
+  }, []);
+
+  const BADGE_COLORS = {
+    Urgent:    "bg-red-100 text-red-700",
+    Exam:      "bg-amber-100 text-amber-800",
+    Holiday:   "bg-emerald-100 text-emerald-700",
+    Event:     "bg-blue-100 text-blue-700",
+    Admission: "bg-violet-100 text-violet-700",
+    General:   "bg-slate-100 text-slate-600",
+  };
+
   return (
     <>
+      {/* ══════════════════════════════════════
+          HERO
+      ══════════════════════════════════════ */}
       <Hero />
 
-      <section className="bg-white py-12 sm:py-16 md:pt-60">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
-          <div className="grid grid-cols-1 lg:grid-cols-[70%_30%] md:gap-20 items-centre">
-            {/* ================= LEFT: IMAGES + TITLE ================= */}
-            <div className="relative">
-              {/* Title Card */}
-              <div
-                className="bg-primary text-white
-                     px-6 py-6 mb-6
-                     md:absolute md:-top-28 md:left-0 md:z-30
-                     md:px-26 md:py-14 md:mb-0"
-              >
-                <p className="text-xs tracking-[0.2em] uppercase mb-4 md:text-sm md:tracking-[0.3em] md:mb-6">
-                  About
-                </p>
-                <h2 className="text-2xl font-serif leading-tight md:text-3xl md:text-5xl">
-                  Unleash students
-                  <br />
-                  possibilities with us
-                </h2>
-              </div>
+      {/* ══════════════════════════════════════
+          QUICK INFO STRIP
+      ══════════════════════════════════════ */}
+      <div className="bg-[#eef3f8] border-b border-[#e6edf4]">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-4 flex flex-wrap items-center gap-6 md:gap-10">
+          {[
+            { icon: "📍", label: "Sakhopar, Padarauna, Kushinagar, UP" },
+            { icon: "📧", label: "kisansakhopar@gmail.com" },
+            { icon: "🕐", label: "Mon–Sat · 9 AM – 3 PM" },
+          ].map((item) => (
+            <div key={item.label} className="flex items-center gap-2">
+              <span className="text-sm">{item.icon}</span>
+              <span className="text-xs text-ternary font-medium">{item.label}</span>
+            </div>
+          ))}
+          <Link
+            to="/admissions"
+            className="ml-auto hidden md:inline-flex items-center gap-2 bg-primary text-white text-xs font-semibold px-5 py-2.5 hover:bg-secondary transition-colors duration-150"
+          >
+            Admissions Open 2026–27 →
+          </Link>
+        </div>
+      </div>
 
-              {/* Images */}
-              <div className="relative md:pt-0 overflow-hidden">
-                {/* Back image */}
+      {/* ══════════════════════════════════════
+          ABOUT SECTION
+      ══════════════════════════════════════ */}
+      <section className="bg-white py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-6 md:px-10">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+
+            {/* left — images */}
+            <Up>
+              <div className="relative">
                 <img
                   src={imgGroup}
-                  alt="Student portrait"
-                  className="w-full h-64 object-cover mb-4
-                             md:w-[48%] md:h-full md:my-6 md:py-2 md:ml-auto md:mb-0"
+                  alt="Students at Kisan Inter College"
+                  className="w-full h-72 md:h-96 object-cover"
                 />
-
-                {/* Front image */}
                 <img
                   src={imgSingle}
-                  alt="Students walking together"
-                  className="w-full h-64 object-cover object-top
-                             md:w-[40%] md:-mt-78 md:ml-20 md:h-full"
+                  alt="Student portrait"
+                  className="hidden md:block absolute -bottom-8 -right-8 w-48 h-60 object-cover border-4 border-white shadow-xl"
                 />
+                {/* year badge */}
+                <div className="absolute top-5 left-5 bg-primary text-white px-4 py-3 text-center">
+                  <p className="text-2xl font-bold" style={{ fontFamily: "var(--font-heading)" }}>1948</p>
+                  <p className="text-white/60 text-xs tracking-widest uppercase">Est.</p>
+                </div>
               </div>
+            </Up>
+
+            {/* right — text */}
+            <div className="md:pl-8">
+              <Up>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-6 h-px bg-primary" />
+                  <span className="text-xs font-semibold tracking-widest uppercase text-ternary">
+                    About the College
+                  </span>
+                </div>
+                <h2
+                  className="text-primary mb-6"
+                  style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 700, lineHeight: 1.15 }}
+                >
+                  Unleashing Student
+                  <br />
+                  <span className="text-secondary">Possibilities Since 1948</span>
+                </h2>
+              </Up>
+
+              <Up delay={80}>
+                <div className="space-y-4 text-ternary text-sm leading-relaxed mb-8">
+                  <p>
+                    Founded in 1948, Kisan Inter College, Sakhopar has been a cornerstone of rural education
+                    in Kushinagar. The name <strong className="text-primary">"Kisan"</strong> — meaning farmer —
+                    reflects our deep roots in serving the local community.
+                  </p>
+                  <p>
+                    We offer Classes VI to XII under the UP State Board with Arts and Science streams,
+                    in a disciplined, inclusive environment focused on academic excellence and character development.
+                  </p>
+                </div>
+              </Up>
+
+              <Up delay={160}>
+                <div className="grid grid-cols-3 divide-x divide-[#e6edf4] border border-[#e6edf4] mb-8">
+                  {[["75+","Years"],["50,000+","Alumni"],["VI–XII","Classes"]].map(([val, lbl]) => (
+                    <div key={lbl} className="px-4 py-4 text-center">
+                      <p className="font-bold text-primary" style={{ fontFamily: "var(--font-heading)", fontSize: "1.4rem" }}>{val}</p>
+                      <p className="text-ternary text-xs tracking-widest uppercase mt-0.5">{lbl}</p>
+                    </div>
+                  ))}
+                </div>
+              </Up>
+
+              <Up delay={200}>
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-2 bg-primary hover:bg-secondary text-white font-semibold px-7 py-3.5 text-sm transition-colors duration-150"
+                >
+                  Learn More About Us
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </Link>
+              </Up>
             </div>
 
-            {/*RIGHT: CONTENT */}
-            <div className="relative pt-8 md:pt-0">
-              <img
-                src={design}
-                alt=""
-                className="hidden md:block -mt-37 ml-12 scale-110"
-              />
-              <p className="text-base leading-relaxed text-[#4b647a] max-w-md md:text-xl md:mt-8">
-                Empowering students through quality education, discipline, and
-                innovation, we create a supportive learning environment that
-                helps young minds grow, explore opportunities, and build a
-                strong foundation for the future.
-              </p>
+          </div>
+        </div>
+      </section>
 
-              <Link
-                to="/about"
-                className="inline-flex items-center text-base tracking-wide gap-2 mt-6
-                     font-semibold text-primary
-                     border-b-2 border-primary pb-1
-                     hover:opacity-80 transition
-                     md:text-lg md:tracking-widest md:gap-3 md:mt-8 md:mt-10"
+      <Divider />
+
+      {/* ══════════════════════════════════════
+          WHY US — 3 PILLARS
+      ══════════════════════════════════════ */}
+      <section className="bg-[#f5f7fa] py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-6 md:px-10">
+
+          <Up>
+            <div className="text-center mb-14">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <span className="w-6 h-px bg-primary" />
+                <span className="text-xs font-semibold tracking-widest uppercase text-ternary">Why Choose Us</span>
+                <span className="w-6 h-px bg-primary" />
+              </div>
+              <h2
+                className="text-primary"
+                style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 700 }}
               >
-                Learn More
-                <span className="">
-                  <MdOutlineArrowOutward size={20} />
-                </span>
+                Built on Three Pillars
+              </h2>
+            </div>
+          </Up>
+
+          <div className="grid md:grid-cols-3 gap-px bg-[#e6edf4] border border-[#e6edf4]">
+            {[
+              {
+                img: booksImg, alt: "Books",
+                title: "Academic Excellence",
+                body: "A rigorous UP Board curriculum that prepares students thoroughly for examinations and life beyond the classroom.",
+              },
+              {
+                img: buildingImg, alt: "Faculty",
+                title: "Experienced Faculty",
+                body: "Dedicated teachers with years of experience in Hindi and English medium instruction across Arts and Science streams.",
+              },
+              {
+                img: heartImg, alt: "Community",
+                title: "Supportive Community",
+                body: "A warm, inclusive campus environment rooted in Kushinagar's rural fabric — where every student feels they belong.",
+              },
+            ].map((p, i) => (
+              <Up key={p.title} delay={i * 80}>
+                <div className="bg-third p-8 md:p-10 h-full hover:bg-white transition-colors duration-150 group">
+                  <div className="w-12 h-12 bg-third group-hover:bg-white flex items-center justify-center mb-4 md:mb-6 transition-colors duration-150">
+                    <img src={p.img} alt={p.alt} className="w-15 h-15 object-contain" />
+                  </div>
+                  <h3 className="text-primary font-bold mb-3" style={{ fontFamily: "var(--font-heading)", fontSize: "1.15rem" }}>
+                    {p.title}
+                  </h3>
+                  <p className="text-ternary text-sm leading-relaxed">{p.body}</p>
+                </div>
+              </Up>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* ══════════════════════════════════════
+          NOTICES PREVIEW
+      ══════════════════════════════════════ */}
+      {/* <section className="bg-white py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-6 md:px-10">
+
+          <Up>
+            <div className="flex items-start md:items-center justify-between gap-4 mb-12 flex-col md:flex-row">
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="w-6 h-px bg-primary" />
+                  <span className="text-xs font-semibold tracking-widest uppercase text-ternary">Latest Updates</span>
+                </div>
+                <h2 className="text-primary" style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 700 }}>
+                  Notices &amp; Announcements
+                </h2>
+              </div>
+              <Link
+                to="/results"
+                className="inline-flex items-center gap-2 border border-[#e6edf4] hover:border-primary text-primary text-sm font-semibold px-5 py-2.5 transition-colors duration-150 shrink-0"
+              >
+                View All Notices →
               </Link>
             </div>
+          </Up>
+
+          {loadingNotices ? (
+            <div className="grid md:grid-cols-2 gap-4">
+              {Array(4).fill(0).map((_,i) => (
+                <div key={i} className="h-20 bg-[#f5f7fa] animate-pulse" />
+              ))}
+            </div>
+          ) : notices.length === 0 ? (
+            <Up>
+              <div className="text-center py-16 bg-[#f5f7fa] border border-[#e6edf4]">
+                <p className="text-4xl mb-3">📋</p>
+                <p className="text-ternary text-sm">No notices posted yet. Check back soon.</p>
+              </div>
+            </Up>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-4">
+              {notices.map((n, i) => (
+                <Up key={n.id} delay={i * 60}>
+                  <div className={`flex items-start gap-4 p-5 border transition-colors duration-150 hover:bg-[#f5f7fa] ${n.is_pinned ? "border-l-4 border-l-primary border-[#e6edf4]" : "border-[#e6edf4]"}`}>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className={`text-xs font-semibold px-2.5 py-0.5 ${BADGE_COLORS[n.category] || "bg-slate-100 text-slate-600"}`}>
+                          {n.category}
+                        </span>
+                        {n.is_pinned && <span className="text-xs text-primary font-semibold">📌 Pinned</span>}
+                      </div>
+                      <p className="text-primary font-semibold text-sm leading-snug"
+                        style={{ fontFamily: "var(--font-heading)" }}>
+                        {n.title}
+                      </p>
+                      <p className="text-ternary text-xs mt-1.5">
+                        {new Date(n.issued_on).toLocaleDateString("en-IN", { day:"2-digit", month:"short", year:"numeric" })}
+                      </p>
+                    </div>
+                    <svg className="text-ternary opacity-40 shrink-0 mt-0.5" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </div>
+                </Up>
+              ))}
+            </div>
+          )}
+
+        </div>
+      </section> */}
+
+      <Divider />
+
+      {/* ══════════════════════════════════════
+          IMPACT STATS
+      ══════════════════════════════════════ */}
+      <section className="bg-primary py-20 md:py-24 relative overflow-hidden">
+        {/* background texture */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.04]"
+          style={{ backgroundImage:"linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)", backgroundSize:"48px 48px" }} />
+
+        <div className="relative max-w-7xl mx-auto px-6 md:px-10">
+          <Up>
+            <p className="text-white/50 text-xs tracking-widest uppercase text-center mb-12">
+              Our legacy in numbers
+            </p>
+          </Up>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-0">
+            {[
+              ["75+",     "Years of Education"],
+              ["50,000+", "Students Passed Out"],
+              ["30+",     "Experienced Faculty"],
+              ["1948",    "Year Established"],
+            ].map(([val, lbl], i) => (
+              <Up key={lbl} delay={i * 70}>
+                <div className={`text-center py-8 px-4 ${i > 0 ? "border-l border-white/10" : ""}`}>
+                  <p
+                    className="text-white font-bold leading-none mb-2"
+                    style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(2rem, 4vw, 3rem)" }}
+                  >
+                    {val}
+                  </p>
+                  <p className="text-white/50 text-xs tracking-widest uppercase">{lbl}</p>
+                </div>
+              </Up>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-[#eef3f8] py-12 px-4 md:py-15 md:px-4">
-        <div className="flex flex-col gap-8 md:flex-row md:gap-10 md:gap-12 md:px-20 md:py-10">
-          <div className="flex flex-col gap-5">
-            <div className="w-16 h-16 md:w-auto md:h-auto">
-              <img src={booksImg} className="w-full h-full object-contain md:w-auto md:h-auto" />
-            </div>
-            <div className="flex flex-col gap-2">
-              <h2 className="text-xl font-semibold text-primary md:text-3xl">
-                Academic Excellence
-              </h2>
-              <p className="tracking-wide text-[#4b647a] text-sm md:text-base">
-                Our rigorous curriculum ensures students are well-prepared for
-                college and life beyond.
-              </p>
-            </div>
-          </div>
-          
-          <div className="flex flex-col gap-5">
-            <div className="w-16 h-16 md:w-auto md:h-auto">
-              <img src={buildingImg} alt="" className="w-full h-full object-contain md:w-auto md:h-auto" />
-            </div>
-            <div className="flex flex-col gap-2">
-              <h2 className="text-xl font-semibold text-primary md:text-3xl">
-                Experienced Faculty
-              </h2>
-              <p className="tracking-wide text-[#4b647a] text-sm md:text-base">
-                Our dedicated teachers are passionate about education and
-                student success.
-              </p>
-            </div>
-          </div>
+      <Divider />
 
-          <div className="flex flex-col gap-5">
-            <div className="w-16 h-16 md:w-auto md:h-auto">
-              <img src={heartImg} alt="" className="w-full h-full object-contain md:w-auto md:h-auto" />
-            </div>
-            <div className="flex flex-col gap-2">
-              <h2 className="text-xl font-semibold text-primary md:text-3xl">
-                Supportive Community
-              </h2>
-              <p className="tracking-wide text-[#4b647a] text-sm md:text-base">
-                We foster a strong sense of community and belonging for all
-                students on board.
-              </p>
+      {/* ══════════════════════════════════════
+          PRINCIPAL'S MESSAGE
+      ══════════════════════════════════════ */}
+      <section className="bg-[#f5f7fa] py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-6 md:px-10">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+
+            {/* dark card */}
+            <Up>
+              <div className="bg-primary p-10 rounded">
+                <div className="w-16 h-16 rounded-full bg-amber-400/20 border border-amber-400/30  flex items-center justify-center mb-6 text-3xl">
+                  👤
+                </div>
+                <p
+                  className="text-white font-bold mb-1"
+                  style={{ fontFamily: "var(--font-heading)", fontSize: "1.15rem" }}
+                >
+                  Shri Akhilesh Singh
+                </p>
+                <p className="text-amber-400 text-xs tracking-widest uppercase mb-6">Principal</p>
+                <div className="border-l-2 border-amber-400 pl-4">
+                  <p className="text-white/70 text-sm leading-relaxed italic">
+                    "Education builds character, discipline, and confidence. Our goal is to prepare
+                    students not only for examinations but for meaningful, responsible lives."
+                  </p>
+                </div>
+              </div>
+            </Up>
+
+            {/* message text */}
+            <div>
+              <Up>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-6 h-px bg-primary" />
+                  <span className="text-xs font-semibold tracking-widest uppercase text-ternary">Message</span>
+                </div>
+                <h2
+                  className="text-primary mb-6"
+                  style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 700, lineHeight: 1.15 }}
+                >
+                  From the <span className="italic">Principal's Desk</span>
+                </h2>
+              </Up>
+              <Up delay={80}>
+                <div className="space-y-4 text-ternary text-sm leading-relaxed mb-8">
+                  <p>
+                    Welcome to Kisan Inter College, Sakhopar. For over seven decades, this institution
+                    has been more than a school — it has been the foundation on which thousands of
+                    students from Kushinagar's rural heartland have built their futures.
+                  </p>
+                  <p>
+                    We strive to develop students who are academically strong, morally grounded, and
+                    socially responsible. I invite every family to experience our campus and join the KIC family.
+                  </p>
+                </div>
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-2 border border-primary hover:scale-105 text-primary text-sm font-semibold px-6 py-3 transition-colors duration-150"
+                >
+                  Read Full Message →
+                </Link>
+              </Up>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="bg-white py-10 px-4 text-center">
-        <h2 className="text-xl font-bold text-primary md:text-2xl">
-          Notices & Announcements
-        </h2>
-        <p className="mt-2 text-sm text-gray-500 md:text-base">Coming Soon...</p>
-      </div>
-      {/* ================= BEAUTIFUL ABOUT SECTION ================= */}
-<section className="py-28 bg-white">
+      <Divider />
 
-  <div className="max-w-6xl mx-auto px-6">
+      {/* ══════════════════════════════════════
+          QUICK LINKS GRID
+      ══════════════════════════════════════ */}
+      <section className="bg-white py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-    {/* ---------- HEADING ---------- */}
-    <div className="text-center max-w-3xl mx-auto mb-20">
-      <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a5f] mb-6">
-        Our Legacy Since 1948
-      </h2>
+          <Up>
+            <div className="text-center mb-14">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <span className="w-6 h-px bg-primary" />
+                <span className="text-xs font-semibold tracking-widest uppercase text-ternary">Explore</span>
+                <span className="w-6 h-px bg-primary" />
+              </div>
+              <h2 className="text-primary" style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 700 }}>
+                Everything You Need
+              </h2>
+            </div>
+          </Up>
 
-      <p className="text-lg text-[#4b647a] leading-relaxed">
-        Kisan Inter College, Sakhopar has been a cornerstone of rural education
-        in Kushinagar district, Uttar Pradesh. Affiliated with the Uttar Pradesh
-        State Board, the institution has consistently delivered quality
-        secondary and senior secondary education for generations.
-      </p>
-    </div>
-
-
-    {/* ---------- TWO COLUMN CONTENT ---------- */}
-    <div className="grid md:grid-cols-2 gap-16 items-center">
-
-      {/* Left Side Text */}
-      <div className="space-y-6 text-lg text-[#4b647a] leading-relaxed">
-        <p>
-          Established in <strong>1948</strong>, the college offers education
-          from <strong>Class VI to Class XII</strong> in Arts and Science streams under the UP Board curriculum.
-        </p>
-
-        <p>
-          With a disciplined academic environment and inclusive approach,
-          the institution focuses on character building, academic excellence,
-          and community development.
-        </p>
-
-        <p>
-          The introduction of the <strong>Atal Tinkering Lab (ATL)</strong>
-          has strengthened innovation and practical learning, empowering
-          students to explore science and technology hands-on.
-        </p>
-      </div>
-
-      {/* Right Side Stats Box */}
-      <div className="bg-[#f7faff] p-10 rounded-xl shadow-lg">
-
-        <h3 className="text-2xl font-semibold text-[#1e3a5f] mb-8 text-center">
-          Our Impact
-        </h3>
-
-        <div className="space-y-8 text-center">
-
-          <div>
-            <p className="text-5xl font-bold text-[#1e3a5f]">75+</p>
-            <p className="text-sm uppercase tracking-wide text-[#6b859e] mt-2">
-              Years of Excellence
-            </p>
-          </div>
-
-          <div>
-            <p className="text-5xl font-bold text-[#1e3a5f]">50,000+</p>
-            <p className="text-sm uppercase tracking-wide text-[#6b859e] mt-2">
-              Students Passed Out
-            </p>
-          </div>
-
-          <div>
-            <p className="text-5xl font-bold text-[#1e3a5f]">VI – XII</p>
-            <p className="text-sm uppercase tracking-wide text-[#6b859e] mt-2">
-              Classes Offered
-            </p>
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-px bg-[#e6edf4] border border-[#e6edf4]">
+            {[
+              { icon: "🎓", title: "Admissions",       sub: "Apply for 2026–27",         to: "/admissions" },
+              { icon: "📊", title: "Results & Notices", sub: "Latest exam results",       to: "/results" },
+              { icon: "📖", title: "About Us",          sub: "History & faculty",         to: "/about" },
+              { icon: "📍", title: "Contact & Map",    sub: "Find us, reach us",          to: "/contact" },
+            ].map((item, i) => (
+              <Up key={item.title} delay={i * 60}>
+                <Link
+                  to={item.to}
+                  className="bg-white hover:bg-[#f5f7fa] transition-colors duration-150 p-8 flex flex-col items-start gap-4 group h-full"
+                >
+                  <span className="text-3xl">{item.icon}</span>
+                  <div>
+                    <p className="text-primary font-bold text-sm mb-1" style={{ fontFamily: "var(--font-heading)" }}>
+                      {item.title}
+                    </p>
+                    <p className="text-ternary text-xs">{item.sub}</p>
+                  </div>
+                  <svg className="text-ternary group-hover:text-primary transition-colors mt-auto" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </Link>
+              </Up>
+            ))}
           </div>
 
         </div>
-      </div>
+      </section>
 
-    </div>
+      {/* ══════════════════════════════════════
+          BOTTOM CTA
+      ══════════════════════════════════════ */}
+      <section className="bg-second border-t border-gray-200/20 py-14">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 text-center">
+          <Up>
+            <h2
+              className="text-primary mb-4 text-3xl md:text-4xl"
+            >
+              Admissions Are Open for <span className="italic text-secondary">2026 – 27</span>
+            </h2>
+            <p className="text-ternary text-sm mb-8 max-w-md mx-auto leading-relaxed">
+              Visit the school office Monday to Saturday, 9 AM to 3 PM. No appointment needed.
+              Classes VI to XII — All streams available.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link
+                to="/admissions"
+                className="inline-flex items-center gap-2 bg-primary hover:scale-105 text-white/80 px-8 py-3.5 text-sm transition-colors duration-150"
+              >
+                Apply for Admission
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 border border-primary hover:scale-105 text-white/80 hover:text-secondary font-medium px-8 py-3.5 text-sm transition-colors duration-150"
+              >
+                Get Directions
+              </Link>
+            </div>
+          </Up>
+        </div>
+      </section>
 
-
-    {/* ---------- PRINCIPAL MESSAGE ---------- */}
-    <div className="mt-28 max-w-3xl mx-auto text-center">
-
-      <h3 className="text-3xl font-semibold text-[#1e3a5f] mb-6">
-        Message from the Principal
-      </h3>
-
-      <p className="text-lg text-[#4b647a] leading-relaxed">
-        At Kisan Inter College, we believe education builds character,
-        discipline, and confidence. Our goal is to prepare students not only
-        for examinations but for meaningful lives filled with responsibility,
-        innovation, and service to society.
-      </p>
-
-      <p className="mt-6 font-semibold text-[#1e3a5f]">
-        — Principal, Kisan Inter College
-      </p>
-
-    </div>
-
-
-    {/* ---------- VISION & MISSION ---------- */}
-    <div className="mt-28 grid md:grid-cols-2 gap-12">
-
-      <div className="bg-[#f7faff] p-8 rounded-xl">
-        <h4 className="text-xl font-semibold text-[#1e3a5f] mb-4">
-          Our Vision
-        </h4>
-        <p className="text-[#4b647a] leading-relaxed">
-          To provide quality education in rural India while nurturing
-          innovation, ethics, and lifelong learning.
-        </p>
-      </div>
-
-      <div className="bg-[#f7faff] p-8 rounded-xl">
-        <h4 className="text-xl font-semibold text-[#1e3a5f] mb-4">
-          Our Mission
-        </h4>
-        <p className="text-[#4b647a] leading-relaxed">
-          To empower students through academic excellence, scientific
-          curiosity, and holistic development.
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
     </>
   );
 };

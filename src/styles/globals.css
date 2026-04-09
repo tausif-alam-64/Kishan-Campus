@@ -26,6 +26,10 @@ bg-third for hover effect on bg-second but in hover effect use like hover:bg-(--
     color: var(--primary);
   }
 
+  .border-primary{
+    color: var(--primary)
+  }
+
   .text-secondary {
     color: var(--secondary);
   }
