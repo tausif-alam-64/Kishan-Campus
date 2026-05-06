@@ -188,15 +188,15 @@ const Hero = () => {
           style={{ animationDelay: "0.18s" }}
         >
           <p className='text-base md:text-2xl text-ternary pb-6'>
-            Kisan Inter College, Sakhopar — serving Kushinagar's students
-              since 1948. Classes VI to XII, Arts &amp; Science, UP Board affiliated.
+            Explore top online courses and industry-ready degrees from leading institutions across India.
+Learn anytime, anywhere and build real-world skills that shape your future 🚀
           </p>
 
           <Link 
-            to="/admissions" 
+            to="/courses" 
             className="inline-flex items-center gap-2 px-8 md:px-12 py-3 bg-primary text-white font-semibold transition-colors duration-300 hover:opacity-90"
           >
-            Apply for Admission
+            Explore Courses
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </Link>
         </div>

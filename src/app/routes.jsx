@@ -19,6 +19,9 @@ import TeacherUploads from "../pages/teacher/TeacherUploads";
 import ResetPassword from "../pages/auth/ResetPassword";
 import Admissions from "../pages/public/Admissions";
 import ResultsNoticesPage from "../pages/public/ResultsNoticesPage";
+import LMSDashboard from "../pages/public/LMSDashboard ";
+import Courses from "../pages/public/Courses";
+import DetailPage from "../pages/public/DetailPage";
 
 const router = createBrowserRouter([
   {
@@ -50,7 +53,18 @@ const router = createBrowserRouter([
         element:  <StudentDashboard />
         
       },
-      
+      {
+        path: '/lmsdashboard',
+        element: <LMSDashboard />
+      },
+      {
+        path: '/courses',
+        element: <Courses />
+      },
+      {
+        path: '/detailPage',
+        element: <DetailPage />
+      },
       {
         path: "*",
         element: <NotFound />,

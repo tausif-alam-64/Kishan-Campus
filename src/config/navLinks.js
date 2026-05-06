@@ -7,9 +7,17 @@ export const publicNavLinks = [
         label : "About Us",
         path : "/about"
     },
+    // {
+    //   label: "Admissions",
+    //   path: "/admissions"
+    // },
     {
-      label: "Admissions",
-      path: "/admissions"
+      label: "LMSDashboard",
+      path: "/lmsdashboard"
+    },
+    {
+      label: "Courses",
+      path: "/courses"
     },
     // {
     //   label: "Result & Notices",

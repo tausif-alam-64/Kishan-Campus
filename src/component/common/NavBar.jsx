@@ -37,11 +37,15 @@ console.log("ROLE:", userRole);
     <header className="w-full sticky bg-white top-0 z-50">
       <nav className="flex items-center justify-between px-6 max-sm:px-2 py-2 max-sm:py-3 mx-auto max-w-7xl">
         <NavLink to="/">
-          <img
+          {/* <img
             src={logoHorizontal}
             alt="logo"
             className="h-16 transition-transform duration-300 hover:scale-105"
-          />
+          /> */}
+          <div className="flex text-primary text-2xl">
+           <h1 className="p-2">LearnUp
+            </h1> 
+          </div>
         </NavLink>
         <ul className="hidden md:flex space-x-6">
           {navLinks.map((link) => (
